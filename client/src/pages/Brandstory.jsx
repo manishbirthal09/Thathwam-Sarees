@@ -55,7 +55,7 @@ export default function BrandStory() {
 
           <button
             type="button"
-            className="mt-10 border border-[#3F010C] px-9 py-3.5 text-xs font-medium uppercase tracking-[0.14em] text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-black hover:bg-black hover:text-[#E2DED3]"
+            className="mt-10 border border-[#3F010C] px-9 py-3.5 text-xs font-medium uppercase tracking-[0.14em] text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-black hover:bg-[#3F010C] hover:text-[#E2DED3]"
           >
             Discover Our Craft
           </button>

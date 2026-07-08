@@ -29,7 +29,7 @@ const PRODUCTS = [
     description: "Handwoven elegance for grand celebrations.",
     price: "₹8,999",
     image:
-      "/public/tc1.webp",
+      "/tc1.webp",
   },
   {
     id: "kanchipuram-sunset",
@@ -37,7 +37,7 @@ const PRODUCTS = [
     description: "Rich zari borders steeped in tradition.",
     price: "₹11,499",
     image:
-      "/public/tc2.webp",
+      "/tc2.webp",
   },
   {
     id: "organza-blush",
@@ -45,7 +45,7 @@ const PRODUCTS = [
     description: "Featherlight elegance for evening affairs.",
     price: "₹6,499",
     image:
-      "/public/tc3.webp",
+      "/tc3.webp",
   },
   {
     id: "crepe-noir",
@@ -53,7 +53,7 @@ const PRODUCTS = [
     description: "Modern silhouette, timeless material.",
     price: "₹7,999",
     image:
-      "/public/tc4.webp",
+      "/tc4.webp",
   },
 ];
 
@@ -121,16 +121,16 @@ function ProductCard({ product }) {
         <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 min-w-0">
           <button
             type="button"
-            className="border border-[#3F010C] px-5 py-2 text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-#3F010C hover:bg-[#3F010C] hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
+            className="border border-[#3F010C] px-5 py-2 text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-#3F010C hover:bg-[#3F010C] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
           >
-            View Details
+            Add to Cart
           </button>
 
           <button
             type="button"
             className="group/cta relative text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
           >
-            Add to Cart
+            View Details
             <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover/cta:w-full" />
           </button>
         </div>
@@ -160,7 +160,7 @@ export default function FeaturedProducts() {
       <div className="mt-12 flex justify-center sm:mt-16 lg:mt-20">
         <button
             type="button"
-            className="border border-[#3F010C] px-5 py-2 text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-#3F010C hover:bg-[#3F010C] hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
+            className="border border-[#3F010C] px-5 py-2 text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-#3F010C hover:bg-[#3F010C] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
           >
             View all colllections
           </button>

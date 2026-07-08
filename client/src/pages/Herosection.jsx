@@ -27,7 +27,7 @@ const SLIDES = [
     eyebrow: "Autumn Weave",
     headline: "Woven in Silence",
     copy:
-      "Hand-loomed silk, dyed in small batches, finished without haste.",
+      "Hand-loomed , dyed , finished without haste.",
   },
   {
     id: "slide-heritage",
@@ -184,27 +184,27 @@ export default function HeroSection() {
 
 
 {/* Content — anchored bottom-left, clear of the transparent navbar */}
-<div className="relative z-10 flex h-full w-full items-end mt-10">
-  <div className="w-full px-4  sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">
+<div className="relative z-10 flex h-full w-full items-end  ">
+  <div className="w-full px-4 translate-y-16  sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">
     <div className="max-w-xl">
       {/* <p className="mb-1.5 text-[9px] font-medium uppercase tracking-[0.16em] text-[#B8AD85] sm:mb-3 sm:text-xs">
         {SLIDES[activeIndex].eyebrow}
       </p> */}
 
-      <h1 className="font-serif text-xl font-normal leading-[1.1] tracking-[-0.01em] text-[#3F010C] sm:text-5xl md:text-6xl lg:text-7xl">
+      <h1 className="font-serif text-xl font-bold leading-[1.1] tracking-[-0.01em] text-[#3F010C] sm:text-5xl md:text-6xl lg:text-7xl">
         {SLIDES[activeIndex].headline}
       </h1>
 
-      <p className="mt-2 max-w-md text-[11px] leading-snug text-[#3F010C] sm:mt-5 sm:text-base sm:leading-relaxed">
+      <p className="mt-2 max-w-[25ch] text-[11px] font-normal leading-snug text-[#3F010C] sm:mt-5 sm:text-base sm:leading-relaxed">
         {SLIDES[activeIndex].copy}
       </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-8">
+      <div className="mt-2 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-8">
         <button
           type="button"
-          className="border border-[#3F010C] px-4 py-2 text-[8px] font-medium uppercase tracking-[0.12em] text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-white hover:bg-white hover:text-black sm:px-10 sm:py-4 sm:text-xs sm:tracking-[0.14em]"
+          className="border border-[#3F010C] px-1 py-1 text-[6px] font-medium uppercase tracking-[0.12em] text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-white hover:bg-white hover:text-black sm:px-10 sm:py-4 sm:text-xs sm:tracking-[0.14em]"
         >
-          Explore Collection
+          Shop now
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import SectionIntro from "../ui/SectionIntro";
+import SectionIntro from "../ui/Sectionintro";
 import Button from "../ui/Button";
 
 /**

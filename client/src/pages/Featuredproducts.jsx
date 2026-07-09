@@ -145,6 +145,7 @@ export default function FeaturedProducts() {
       aria-labelledby="featured-products-heading"
       className="bg-[#E2DED3] px-6 py-16 sm:px-10 sm:py-24 md:px-16 lg:px-20 lg:py-32 overflow-hidden"
     >
+      <div className="w-20 h-px bg-[#16271C]/30 mx-auto mb-16" />
       <SectionIntro
         id="featured-products-heading"
         eyebrow="The Edit"

@@ -11,6 +11,7 @@ import FeaturedProducts from './pages/Featuredproducts'
 import InstagramFeed from './pages/Instagramfeed'
 import Navbar from './pages/Navbar'
 import AnnouncementBar from './pages/AnnouncementBar'
+import USPSlider from './pages/USPSlider'
 
 function App() {
   
@@ -23,7 +24,9 @@ function App() {
      <FeaturedCollections /> 
      <FeaturedProducts />
      <BrandStory /> 
+     
      <InstagramFeed />
+     <USPSlider />
      <Footer /> 
     </>
   )

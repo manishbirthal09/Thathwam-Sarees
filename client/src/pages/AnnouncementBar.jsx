@@ -23,7 +23,7 @@ const MESSAGES = [
 
 const ROTATE_MS = 4500;
 
-export const ANNOUNCEMENT_BAR_HEIGHT = 40; // px — referenced by Navbar for its scroll offset
+export const ANNOUNCEMENT_BAR_HEIGHT = 20; // px — referenced by Navbar for its scroll offset
 
 export default function AnnouncementBar() {
   const [activeIndex, setActiveIndex] = useState(0);

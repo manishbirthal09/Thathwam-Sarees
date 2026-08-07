@@ -130,7 +130,7 @@ export default function Navbar() {
       >
         <nav
           aria-label="Primary"
-          className="mx-auto grid h-16 max-w-[1600px] grid-cols-3 items-center px-6 sm:px-10 md:h-20 lg:h-24 lg:px-16"
+          className="mx-auto grid h-10 max-w-[1600px] grid-cols-3 items-center px-6 sm:px-10 md:h-20 lg:h-12 lg:px-16"
         >
           {/* Left — desktop menu links */}
           <ul className="hidden items-center gap-9 lg:flex">

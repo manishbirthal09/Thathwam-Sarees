@@ -20,15 +20,15 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 
 const SLIDES = [
-  {
-    id: "slide-weave",
-    image:
-      "/TB1.webp",
-    eyebrow: "Autumn Weave",
-    headline: "Woven in Silence",
-    copy:
-      "Hand-loomed , dyed , finished without haste.",
-  },
+  // {
+  //   id: "slide-weave",
+  //   image:
+  //     "/TB1.webp",
+  //   eyebrow: "Autumn Weave",
+  //   headline: "Woven in Silence",
+  //   copy:
+  //     "Hand-loomed , dyed , finished without haste.",
+  // },
   {
     id: "slide-heritage",
     image:
@@ -149,7 +149,7 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Featured collections"
-      className="relative aspect-[5/4] w-full  overflow-hidden bg-black py-20 mt-8"
+      className="relative aspect-[5/4] w-full  overflow-hidden bg-black py-20 mt-8 lg:aspect-auto lg:h-[calc(100vh-20px)] lg:mt-0 lg:py-0"
       
       // className="relative h-[65vh] min-h-[420px] w-full overflow-hidden bg-black md:h-[75vh] md:min-h-[560px]"
         onMouseEnter={() => setIsPaused(true)}
@@ -171,11 +171,11 @@ export default function HeroSection() {
             <img
               src={slide.image}
               alt={slide.headline}
-              className="h-full w-full object-cover  object-top"
+              className="h-full w-full   object-fill"
               loading={index === 0 ? "eager" : "lazy"}
               fetchpriority={index === 0 ? "high" : "auto"}
             />
-            {/* Soft gradient so text stays legible without flattening the photo */}
+           
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
           </div>
         ))}
@@ -184,12 +184,12 @@ export default function HeroSection() {
 
 
 {/* Content — anchored bottom-left, clear of the transparent navbar */}
-<div className="relative z-10 flex h-full w-full items-end  ">
+{/* <div className="relative z-10 flex h-full w-full items-end  ">
   <div className="w-full px-4 translate-y-16  sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">
     <div className="max-w-xl">
       {/* <p className="mb-1.5 text-[9px] font-medium uppercase tracking-[0.16em] text-[#B8AD85] sm:mb-3 sm:text-xs">
         {SLIDES[activeIndex].eyebrow}
-      </p> */}
+      </p> 
 
       <h1 className="font-serif text-xl font-bold leading-[1.1] tracking-[-0.01em] text-[#3F010C] sm:text-5xl md:text-6xl lg:text-7xl">
         {SLIDES[activeIndex].headline}
@@ -209,7 +209,7 @@ export default function HeroSection() {
       </div>
     </div>
   </div>
-</div>
+</div> */}
       {/* Content — anchored bottom-left, clear of the transparent navbar */}
       {/* <div className="relative z-10 flex h-full w-full items-end">
         <div className="w-full px-6 pb-16 sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">

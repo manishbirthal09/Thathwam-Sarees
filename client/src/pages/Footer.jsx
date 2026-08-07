@@ -84,7 +84,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#3F010C]">
+    <footer  className="p-2 bg-[#E2DED3]">
+      <div className="bg-[#3F010C] rounded-lg">
       <div className="mx-auto max-w-[1440px] px-6 pb-14 pt-20 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-28">
         <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           {/* Logo + brand story + newsletter */}
@@ -209,6 +210,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );

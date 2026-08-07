@@ -4,8 +4,8 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import HeroSection from './pages/Herosection'
-import FeaturedCollections from './pages/Featuredcollections'
-import BrandStory from './pages/Brandstory'
+// import FeaturedCollections from './pages/Featuredcollections'
+// import BrandStory from './pages/Brandstory'
 import Footer from './pages/Footer'
 import FeaturedProducts from './pages/Featuredproducts'
 import InstagramFeed from './pages/Instagramfeed'
@@ -21,9 +21,9 @@ function App() {
     <AnnouncementBar />
      <Navbar /> 
      <HeroSection /> 
-     <FeaturedCollections /> 
+     {/* <FeaturedCollections />  */}
      <FeaturedProducts />
-     <BrandStory /> 
+     {/* <BrandStory />  */}
      
      <InstagramFeed />
      <USPSlider />

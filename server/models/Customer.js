@@ -1,0 +1,37 @@
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+
+const addressSchema = new mongoose.Schema({
+  fullName: String,
+  phone: String,
+  line1: String,
+  line2: String,
+  city: String,
+  state: String,
+  pincode: String,
+  isDefault: { type: Boolean, default: false },
+});
+
+const customerSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+    password: { type: String, required: true, minlength: 6, select: false },
+    phone: { type: String, trim: true },
+    addresses: [addressSchema],
+  },
+  { timestamps: true }
+);
+
+customerSchema.pre("save", async function () {
+  if (!this.isModified("password")) return ;
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  
+});
+
+customerSchema.methods.matchPassword = async function (enteredPassword) {
+  return bcrypt.compare(enteredPassword, this.password);
+};
+
+export default mongoose.model("Customer", customerSchema);

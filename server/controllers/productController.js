@@ -1,7 +1,7 @@
-import Product  from "../models/Product";
+import Product  from "../models/Product.js";
 
 // GET /api/products  (with filters + pagination)
-export default getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
     const { category, fabric, color, maxPrice, search, page = 1, limit = 12 } = req.query;
     const query = {};
@@ -27,7 +27,7 @@ export default getProducts = async (req, res) => {
 };
 
 // GET /api/products/:id
-export default getProductById = async (req, res) => {
+export const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
     .populate("category", "name slug");
@@ -39,7 +39,7 @@ export default getProductById = async (req, res) => {
 };
 
 // POST /api/products  (with Cloudinary image upload)
-export default createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   try {
     const { name, price, category, fabric, color, description, stock } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
@@ -62,7 +62,7 @@ export default createProduct = async (req, res) => {
 };
 
 // PUT /api/products/:id
-export default updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
     const updates = req.body;
     if (req.files && req.files.length > 0) {
@@ -76,7 +76,7 @@ export default updateProduct = async (req, res) => {
 };
 
 // DELETE /api/products/:id
-export default deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: "Product deleted" });

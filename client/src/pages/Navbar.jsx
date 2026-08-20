@@ -1,23 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ANNOUNCEMENT_BAR_HEIGHT  } from "./AnnouncementBar";
 import AnnouncementBar from "./AnnouncementBar";
-
-/**
- * Navbar
- * -----------------------------------------------------------------------
- * Fixed, permanently #3F010C navbar that rises to top:0 as the
- * announcement bar scrolls out of view. Three-column desktop layout:
- * menu links | centered logo | utility icons.
- *
- * Background is intentionally constant (bg-[#3F010C]) rather than
- * transparent-over-hero — the announcement bar above it gets its own
- * thin gold divider (see AnnouncementBar.jsx) so the two #3F010C bars
- * read as distinct rather than fusing into one block.
- *
- * Uses the same brand tokens as prior sections — tailwind.config.js
- * should define: #3F010C / #3F010C-dark, ivory, gold, font-serif.
- * -----------------------------------------------------------------------
- */
+import { Link } from "react-router-dom";
+import { User } from "lucide-react";
+import { useCustomerAuth } from "../context/CustomerAuthContext";
+ 
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -74,8 +61,8 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchInputRef = useRef(null);
-
-  // Scroll-driven offset only — color no longer changes with scroll
+const { isAuthenticated, customer } = useCustomerAuth();
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -85,7 +72,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll while an overlay is open
+  
   useEffect(() => {
     document.body.style.overflow =
       isSearchOpen || isMobileMenuOpen ? "hidden" : "";
@@ -94,7 +81,7 @@ export default function Navbar() {
     };
   }, [isSearchOpen, isMobileMenuOpen]);
 
-  // Focus the search input the moment the overlay opens
+  
   useEffect(() => {
     if (isSearchOpen) {
       const id = setTimeout(() => searchInputRef.current?.focus(), 250);
@@ -108,7 +95,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, []);
 
-  // Escape closes whichever overlay is open
+ 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") closeOverlays();
@@ -117,8 +104,7 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [closeOverlays]);
 
-  // Constant tones — background is always #3F010C now, so text/icons
-  // always sit on a dark surface regardless of scroll state
+  
   const linkToneClass = "text-ivory/85 hover:text-ivory";
   const iconToneClass = "text-ivory/85 hover:text-gold";
 
@@ -162,7 +148,7 @@ export default function Navbar() {
             href="/"
             className="col-start-2 justify-self-center font-serif text-xl font-normal tracking-[-0.01em] text-ivory transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C sm:text-2xl"
           >
-            <img src="/Thathwamlogo.png" alt="Thathwam Sarees" className="h-9 w-auto sm:h-10 rounded-sm" />
+            <img src="/Thathwamlogofinal.png" alt="Thathwam Sarees" className="h-12 w-auto sm:h-12 rounded-sm" />
           </a>
 
           {/* Right — utility icons */}
@@ -188,6 +174,16 @@ export default function Navbar() {
                 </span>
               )}
             </a>
+            <Link
+    to={isAuthenticated ? "/profile" : "/login"}
+    aria-label="Profile"
+    className="text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-1.5"
+  >
+    <User size={18} strokeWidth={1.5} />
+    {isAuthenticated && (
+      <span className="text-xs">{customer?.name?.split(" ")[0]}</span>
+    )}
+  </Link>
           </div>
         </nav>
       </header>

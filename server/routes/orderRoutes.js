@@ -1,19 +1,19 @@
 import express from "express";
 const router = express.Router();
-import { protect } from "../middleware/authMiddleware";
-import { protectCustomer } from "../middleware/customerAuthMiddleware"; // 👈 NEW import
+import { protect }  from "../middleware/authMiddleware.js";
+import { protectCustomer }  from "../middleware/customerAuthMiddleware.js"; 
 import {
   createOrder,
   getOrders,
   getOrderById,
   updateOrderStatus,
   getMyOrders, 
-} from "../controllers/orderController";
+} from "../controllers/orderController.js";
 
-router.post("/", protectCustomer, createOrder);           // 👈 CHANGED — login required now
-router.get("/my-orders", protectCustomer, getMyOrders);    // 👈 NEW route
-router.get("/", protect, getOrders);                        // unchanged — admin only
-router.get("/:id", protectCustomer, getOrderById);          // 👈 CHANGED — login required
-router.put("/:id/status", protect, updateOrderStatus);      // unchanged — admin only
+router.post("/", protectCustomer, createOrder);
+router.get("/my-orders", protectCustomer, getMyOrders);    
+router.get("/", protect, getOrders);                        
+router.get("/:id", protectCustomer, getOrderById);          
+router.put("/:id/status", protect, updateOrderStatus);      
 
 export default router;

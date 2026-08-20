@@ -1,8 +1,8 @@
-import  Cart from "../models/Cart";
+import  Cart from "../models/Cart.js";
 import { v4 as uuidv4 } from "uuid";
 
 // GET /api/cart/:cartId
-export default getCart = async (req, res) => {
+export const getCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ cartId: req.params.cartId }).populate("items.product");
     if (!cart) {
@@ -15,7 +15,7 @@ export default getCart = async (req, res) => {
 };
 
 // POST /api/cart/:cartId/add
-export default addToCart = async (req, res) => {
+export const addToCart = async (req, res) => {
   try {
     const { productId, quantity = 1 } = req.body;
     let cart = await Cart.findOne({ cartId: req.params.cartId });
@@ -40,7 +40,7 @@ export default addToCart = async (req, res) => {
 };
 
 // PUT /api/cart/:cartId/update
-export default updateCartItem = async (req, res) => {
+export const updateCartItem = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
     const cart = await Cart.findOne({ cartId: req.params.cartId });
@@ -64,7 +64,7 @@ export default updateCartItem = async (req, res) => {
 };
 
 // DELETE /api/cart/:cartId/remove/:productId
-export default removeFromCart = async (req, res) => {
+export const removeFromCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ cartId: req.params.cartId });
     if (!cart) return res.status(404).json({ message: "Cart not found" });

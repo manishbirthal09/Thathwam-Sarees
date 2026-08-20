@@ -1,11 +1,11 @@
 import express from "express";
 const router = express.Router();
-const {
+import {
   registerCustomer,
   loginCustomer,
   getCustomerProfile,
-} = require("../controllers/customerAuthController");
-const { protectCustomer } = require("../middleware/customerAuthMiddleware");
+} from "../controllers/customerAuthController.js";
+import { protectCustomer }  from "../middleware/customerAuthMiddleware.js";
 
 router.post("/register", registerCustomer);
 router.post("/login", loginCustomer);

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import Customer from "../models/Customer";
+import Customer from "../models/Customer.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id, type: "customer" }, process.env.JWT_SECRET, {
@@ -8,7 +8,7 @@ const generateToken = (id) => {
 };
 
 
-export default registerCustomer = async (req, res) => {
+export const registerCustomer = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
 
@@ -35,7 +35,7 @@ export default registerCustomer = async (req, res) => {
 };
 
 
-export default loginCustomer = async (req, res) => {
+export const loginCustomer = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -61,7 +61,7 @@ export default loginCustomer = async (req, res) => {
 };
 
 
-export default getCustomerProfile = async (req, res) => {
+export const getCustomerProfile = async (req, res) => {
   try {
     const customer = await Customer.findById(req.customer.id);
     if (!customer) {

@@ -1,12 +1,12 @@
-import Category from "../models/Category";
-import cloudinary from "../config/cloudinary";
+import Category from "../models/Category.js";
+import cloudinary from "../config/cloudinary.js";
 
 
 const generateSlug = (name) =>
   name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 
-export default createCategory = async (req, res) => {
+export const createCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
 
@@ -34,7 +34,7 @@ export default createCategory = async (req, res) => {
 };
 
 
-export default getCategories = async (req, res) => {
+export const getCategories = async (req, res) => {
   try {
     const categories = await Category.find({ isActive: true }).sort({ createdAt: -1 });
     res.status(200).json({ success: true, count: categories.length, categories });
@@ -45,7 +45,7 @@ export default getCategories = async (req, res) => {
 
 // @desc  Get single category by slug
 // @route GET /api/categories/:slug
-export default getCategoryBySlug = async (req, res) => {
+export const getCategoryBySlug = async (req, res) => {
   try {
     const category = await Category.findOne({ slug: req.params.slug });
     if (!category) {
@@ -59,7 +59,7 @@ export default getCategoryBySlug = async (req, res) => {
 
 // @desc  Update category (admin only)
 // @route PUT /api/categories/:id
-export default updateCategory = async (req, res) => {
+export const updateCategory = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
     if (!category) {
@@ -98,7 +98,7 @@ export default updateCategory = async (req, res) => {
 
 // @desc  Delete category (admin only)
 // @route DELETE /api/categories/:id
-export default deleteCategory = async (req, res) => {
+export const deleteCategory = async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
     if (!category) {

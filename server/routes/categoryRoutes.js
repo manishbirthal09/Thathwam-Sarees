@@ -1,14 +1,14 @@
 import express from "express";
 const router = express.Router();
-const {
+import {
   createCategory,
   getCategories,
   getCategoryBySlug,
   updateCategory,
   deleteCategory,
-} = require("../controllers/categoryController");
-const { protect } = require("../middleware/authMiddleware"); // admin auth
-const upload = require("../middleware/upload"); // multer
+}  from "../controllers/categoryController.js";
+  import { protect } from "../middleware/authMiddleware.js"; 
+  import upload from "../middleware/upload.js";
 
 // Public routes
 router.get("/", getCategories);

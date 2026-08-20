@@ -1,10 +1,11 @@
 import express from "express";
 const router = express.Router();
-import { initiatePayment, checkPaymentStatus } from "../controllers/paymentController";
-import { protectCustomer }  from "../middleware/customerAuthMiddleware";
+import { createRazorpayOrder,
+  verifyRazorpayPayment, } from "../controllers/paymentController.js";
+import { protectCustomer }  from "../middleware/customerAuthMiddleware.js";
 
 
-router.post("/initiate/:orderId", protectCustomer, initiatePayment);
-router.get("/status/:orderId", protectCustomer, checkPaymentStatus);
+router.post("/create-order", protectCustomer, createRazorpayOrder);
+router.post("/verify-payment", protectCustomer, verifyRazorpayPayment);
 
 export default router;

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import Customer from "../models/Customer";
+import Customer from "../models/Customer.js";
 
-export default protectCustomer = async (req, res, next) => {
+export const protectCustomer = async (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {

@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export default sendOrderNotification = async (order) => {
+export const sendOrderNotification = async (order) => {
   try {
     const itemsList = order.items
       .map((item) => `${item.name} × ${item.quantity} — ₹${item.price}`)

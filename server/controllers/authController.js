@@ -1,9 +1,9 @@
-import Admin from "../models/Admin";
+import Admin from "../models/Admin.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 
-export default login = async (req, res) => {
+export const  login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });

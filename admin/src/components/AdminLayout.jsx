@@ -1,0 +1,51 @@
+// import Sidebar from "./Sidebar";
+
+// export default function AdminLayout({ children }) {
+//   return (
+//     <div className="flex">
+//       <Sidebar />
+//       <main className="flex-1 bg-gray-50 min-h-screen p-8">{children}</main>
+//     </div>
+//   );
+// }
+
+import { useState } from "react";
+import { Menu } from "lucide-react";
+import Sidebar from "./Sidebar";
+
+export default function AdminLayout({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Mobile Header */}
+        <header className="md:hidden flex items-center justify-between px-4 py-3 bg-white border-b sticky top-0 z-30">
+          <button onClick={() => setIsOpen(true)}>
+            <Menu size={24} />
+          </button>
+
+          <h1 className="font-semibold text-[#3F010C]">NiarabyNeenu Admin</h1>
+
+          <div className="w-6" />
+        </header>
+
+        <main className="flex-1 p-4 md:p-8 overflow-x-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}

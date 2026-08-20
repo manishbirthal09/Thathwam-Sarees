@@ -1,11 +1,11 @@
 import express from "express";
 const router = express.Router();
-const {
+import {
   getCart,
   addToCart,
   updateCartItem,
   removeFromCart,
-} = require("../controllers/cartController");
+}  from "../controllers/cartController.js";
 
 router.get("/:cartId", getCart);
 router.post("/:cartId/add", addToCart);

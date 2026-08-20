@@ -19,14 +19,26 @@ const orderSchema = new mongoose.Schema(
       city: String,
       pincode: String,
     },
-    paymentMethod: { type: String, enum: ["phonepe", "cod"], default: "phonepe" }, 
+    paymentMethod: { type: String, enum: ["razorpay", "cod"], default: "razorpay" }, 
     paymentStatus: { type: String, enum: ["pending", "paid", "failed"], default: "pending" },
-    phonepeMerchantTransactionId: String, 
-        phonepeTransactionId: String,          
+      razorpay_order_id: {
+    type: String, 
+  },
+  razorpay_payment_id: {
+    type: String, 
+  },
+  razorpay_signature: {
+    type: String, 
+  },
+//   payment_status: {
+//     type: String,
+//     enum: ["created", "paid", "failed"],
+//     default: "created",
+//   },      
     status: {
       type: String,
-      enum: ["pending", "confirmed", "shipped", "delivered", "cancelled"],
-      default: "pending",
+      enum: ["created", "paid", "failed"],
+    default: "created",
     },
   },
   { timestamps: true }

@@ -159,21 +159,20 @@ const [products, setProducts] = useState([]);
           {p.description}
         </p>
 
-        <p className="mt-3 text-sm font-medium text-black">${displayPrice.toFixed(2)}</p>
+        <p className="mt-3 text-sm font-medium text-black">₹{displayPrice.toLocaleString("en-IN")}</p>
         </div>
 
-        {/* Compact CTAs — smaller than site-wide primary sizing on purpose */}
-        <div className="mt-5  px-4 pb-4 flex  items-center gap-x-3">
+        <div className="mt-5 px-4 pb-4 flex items-center gap-x-2 min-w-0">
           <button
              onClick={(e) => handleAddToCart(e, p._id)}
-            className="flex-1 border border-[#3F010C] px-4 py-2.5 text-[10px] font-medium uppercase tracking-wide text-[#3F010C] whitespace-nowrap transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+            className="flex-1 min-w-0 border border-[#3F010C] px-2 py-2.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C]  transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
           >
             Add to Cart
           </button>
 
           <button
             onClick={(e) => handleBuyNow(e, p._id)}
-            className="flex-1 border border-[#3F010C] bg-[#3F010C] px-4 py-2.5 text-[10px] font-medium uppercase tracking-wide text-white whitespace-nowrap transition-colors duration-300 hover:bg-black"
+            className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-2.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white  transition-colors duration-300 hover:bg-black"
   
           >
             Buy Now

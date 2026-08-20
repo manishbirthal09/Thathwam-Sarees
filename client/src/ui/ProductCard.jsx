@@ -32,13 +32,13 @@ export default function ProductCard({ product }) {
       <div className="pt-3">
         <h3 className="font-serif text-base text-brand-text">{product.name}</h3>
         <p className="text-sm text-gray-500 mt-1">₹{product.price.toLocaleString("en-IN")}</p>
-        <div className="flex gap-2 mt-3">
-          <Button  className="flex-1 text-xs border border-[#3F010C]" onClick={handleAddToCart}>
-            Add to Cart
-          </Button>
-          <Button className="flex-1 text-xs bg-[#3F010C] text-white" onClick={handleBuyNow}>
-            Buy Now
-          </Button>
+        <div className="flex gap-2 mt-3 min-w-0">
+          <Button  className="flex-1 min-w-0 whitespace-nowrap px-2 text-[10px] sm:text-xs border border-[#3F010C]" onClick={handleAddToCart}>
+  Add to Cart
+</Button>
+<Button className="flex-1 min-w-0 whitespace-nowrap px-2 text-[10px] sm:text-xs bg-[#3F010C] text-white" onClick={handleBuyNow}>
+  Buy Now
+</Button>
         </div>
       </div>
     </div>

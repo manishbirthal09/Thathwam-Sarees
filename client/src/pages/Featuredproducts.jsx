@@ -155,7 +155,7 @@ const [products, setProducts] = useState([]);
           </h3>
         </Link>
 
-        <p className="mt-1.5 text-sm leading-relaxed text-[#3F010C]">
+        <p className="mt-1.5 text-sm leading-tight text-[#3F010C]">
           {p.description}
         </p>
 
@@ -165,14 +165,14 @@ const [products, setProducts] = useState([]);
         <div className="mt-5 px-4 pb-4 flex items-center gap-x-2 min-w-0">
           <button
              onClick={(e) => handleAddToCart(e, p._id)}
-            className="flex-1 min-w-0 border border-[#3F010C] px-2 py-2.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C]  transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+            className="flex-1 min-w-0 border border-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C]  transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
           >
             Add to Cart
           </button>
 
           <button
             onClick={(e) => handleBuyNow(e, p._id)}
-            className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-2.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white  transition-colors duration-300 hover:bg-black"
+            className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white  transition-colors duration-300 hover:bg-black"
   
           >
             Buy Now

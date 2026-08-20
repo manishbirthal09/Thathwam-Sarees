@@ -18,7 +18,8 @@ app.use(cors({
   origin: [
      "http://localhost:5173",
      "http://localhost:5174",
-     "https://thathwam-sarees-ruby.vercel.app/"
+     "https://thathwam-sarees-frontend.vercel.app",
+     "https://thathwam-sarees-admin.vercel.app"
   ],
   credentials: true,
 }));

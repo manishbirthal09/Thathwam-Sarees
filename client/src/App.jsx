@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
-// import Testimonials from "./components/layout/Testimonials";
 import { CartProvider } from "./context/CartContext";
 import { CustomerAuthProvider } from "./context/CustomerAuthContext";
 import Login from "./pages/Login";

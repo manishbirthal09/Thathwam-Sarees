@@ -9,40 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
-// const PRODUCTS = [
-//   {
-//     id: "banarasi-heritage",
-//     name: "Banarasi Silk Heritage Saree",
-//     description: "Handwoven elegance for grand celebrations.",
-//     price: "₹8,999",
-//     image:
-//       "/tc1.webp",
-//   },
-//   {
-//     id: "kanchipuram-sunset",
-//     name: "Kanchipuram Sunset Silk Saree",
-//     description: "Rich zari borders steeped in tradition.",
-//     price: "₹11,499",
-//     image:
-//       "/tc2.webp",
-//   },
-//   {
-//     id: "organza-blush",
-//     name: "Organza Blush Drape Saree",
-//     description: "Featherlight elegance for evening affairs.",
-//     price: "₹6,499",
-//     image:
-//       "/tc3.webp",
-//   },
-//   {
-//     id: "crepe-noir",
-//     name: "Crepe Noir Statement Saree",
-//     description: "Modern silhouette, timeless material.",
-//     price: "₹7,999",
-//     image:
-//       "/tc4.webp",
-//   },
-// ];
+
 
 function WishlistButton({ productName }) {
   const [isWishlisted, setIsWishlisted] = useState(false);

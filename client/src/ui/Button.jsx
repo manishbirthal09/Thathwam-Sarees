@@ -1,28 +1,3 @@
-/**
- * Button
- * -----------------------------------------------------------------------
- * Single source of truth for every button/link style on the homepage.
- * Previously each section (Hero, Brand Story, Footer) hand-wrote its own
- * button classes with slightly different padding/timing — this collapses
- * them into one component so hover, focus, and sizing stay identical
- * everywhere they appear.
- *
- * Variants:
- *  - "primary"        filled #3F010C — reserved for the single highest-
- *                      priority action on a light-background section
- *  - "outline-light"   white/ivory outline — for use on top of photography
- *                      (hero). Never filled, so it never competes with
- *                      the image.
- *  - "outline-dark"    black outline — for use on white/ivory backgrounds
- *                      (brand story), fills #3F010C on hover
- *  - "ghost"           text-only link with a gold underline that draws in
- *                      on hover, optional trailing arrow
- *
- * All variants share the same focus-visible ring so keyboard users get a
- * consistent, visible focus indicator across the whole page.
- * -----------------------------------------------------------------------
- */
-
 const BASE =
   "inline-flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 

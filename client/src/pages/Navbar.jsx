@@ -4,7 +4,7 @@ import AnnouncementBar from "./AnnouncementBar";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
 import { useCustomerAuth } from "../context/CustomerAuthContext";
- 
+import { useCart } from "../context/CartContext";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ];
 
 const SCROLL_THRESHOLD = ANNOUNCEMENT_BAR_HEIGHT;
-const CART_ITEM_COUNT = 2;
+const { itemCount } = useCart();
 
 
 function CartIcon(props) {
@@ -100,6 +100,8 @@ const { isAuthenticated, customer } = useCustomerAuth();
   const linkToneClass = "text-ivory/85 hover:text-ivory";
   const iconToneClass = "text-ivory/85 hover:text-gold";
 
+ 
+
   return (
     <>
       <header
@@ -149,13 +151,13 @@ const { isAuthenticated, customer } = useCustomerAuth();
 
             <a
               href="/cart"
-              aria-label={`Cart, ${CART_ITEM_COUNT} items`}
+              aria-label={`Cart, ${itemCount} items`}
               className={`relative p-1 transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${iconToneClass}`}
             >
               <CartIcon />
-              {CART_ITEM_COUNT > 0 && (
+              {itemCount > 0 && (
                 <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[9px] font-medium text-#3F010C">
-                  {CART_ITEM_COUNT}
+                  {itemCount}
                 </span>
               )}
             </a>
@@ -245,7 +247,7 @@ const { isAuthenticated, customer } = useCustomerAuth();
             className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-label text-ivory/80 transition-colors duration-300 ease-in-out hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C"
           >
             <CartIcon width="16" height="16" />
-            Cart ({CART_ITEM_COUNT})
+            Cart ({itemCount})
           </a>
         </div>
       </div>

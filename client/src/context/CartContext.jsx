@@ -3,7 +3,7 @@ import api from "../api/axios";
 
 const CartContext = createContext();
 
-// generate or reuse a persistent cartId per browser
+
 function getCartId() {
   let cartId = localStorage.getItem("cartId");
   if (!cartId) {

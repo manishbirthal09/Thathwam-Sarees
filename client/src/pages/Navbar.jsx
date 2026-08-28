@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ];
 
 const SCROLL_THRESHOLD = ANNOUNCEMENT_BAR_HEIGHT;
-const { itemCount } = useCart();
+
 
 
 function CartIcon(props) {
@@ -100,7 +100,7 @@ const { isAuthenticated, customer } = useCustomerAuth();
   const linkToneClass = "text-ivory/85 hover:text-ivory";
   const iconToneClass = "text-ivory/85 hover:text-gold";
 
- 
+ const { itemCount } = useCart();
 
   return (
     <>

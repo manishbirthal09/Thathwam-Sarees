@@ -1,18 +1,6 @@
 import { useState } from "react";
 
-/**
- * Footer
- * -----------------------------------------------------------------------
- * Closing section for the homepage — deep #3F010C background (one of
- * only two sanctioned #3F010C usages per the design blueprint, the
- * other being the primary CTA). Kept light through generous spacing,
- * thin dividers, and restrained typography rather than density.
- *
- * Uses the same brand tokens as prior sections — tailwind.config.js
- * should define: #3F010C '#3F010C', ivory '#E2DED3', gold '#B8AD85',
- * and fontFamily.serif → Fraunces.
- * -----------------------------------------------------------------------
- */
+
 
 const COLLECTION_LINKS = [
   { label: "Banarasi", href: "/collections/banarasi" },
@@ -78,7 +66,7 @@ export default function Footer() {
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (!email.trim()) return;
-    // Wire up to your email provider here (Klaviyo, Mailchimp, etc.)
+    
     setSubmitted(true);
     setEmail("");
   };
@@ -88,7 +76,7 @@ export default function Footer() {
       <div className="bg-[#3F010C] rounded-lg">
       <div className="mx-auto max-w-[1440px] px-6 pb-14 pt-20 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-28">
         <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
-          {/* Logo + brand story + newsletter */}
+         
           <div className="lg:col-span-4">
             <a
               href="/"
@@ -137,7 +125,7 @@ export default function Footer() {
             </form>
           </div>
 
-          {/* Link columns */}
+          
           <div className="lg:col-span-2 lg:col-start-6">
             <FooterHeading>Collections</FooterHeading>
             <ul className="space-y-3.5">
@@ -172,8 +160,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social icons */}
-        <div className="mt-16 flex items-center gap-6 sm:mt-20">
+                <div className="mt-16 flex items-center gap-6 sm:mt-20">
           {SOCIAL_LINKS.map((social) => (
             <a
               key={social.label}
@@ -190,7 +177,7 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Copyright bar */}
+       
         <div className="mt-14 flex flex-col items-center gap-4 border-t border-[#E2DED3]/15 pt-8 sm:flex-row sm:justify-between sm:gap-0">
           <p className="text-[11px] uppercase tracking-[0.14em] text-[#E2DED3]/45">
             &copy; {new Date().getFullYear()} Thathwam Sarees. All rights reserved.

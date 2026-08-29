@@ -1,6 +1,6 @@
 import Product  from "../models/Product.js";
 
-// GET /api/products  (with filters + pagination)
+
 export const getProducts = async (req, res) => {
   try {
     const { category, fabric, color, maxPrice, search, page = 1, limit = 12 } = req.query;
@@ -26,7 +26,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
-// GET /api/products/:id
+
 export const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
@@ -38,15 +38,16 @@ export const getProductById = async (req, res) => {
   }
 };
 
-// POST /api/products  (with Cloudinary image upload)
+
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, category, fabric, color, description, stock } = req.body;
+    const { name, price, discountPrice, category, fabric, color, description, stock } = req.body;
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
       name,
       price,
+      discountPrice,
       category,
       fabric,
       color,
@@ -61,7 +62,6 @@ export const createProduct = async (req, res) => {
   }
 };
 
-// PUT /api/products/:id
 export const updateProduct = async (req, res) => {
   try {
     const updates = req.body;
@@ -75,7 +75,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// DELETE /api/products/:id
+
 export const deleteProduct = async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);

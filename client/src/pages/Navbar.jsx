@@ -63,13 +63,14 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (!isHome) return;
     const handleScroll = () => {
       setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     document.body.style.overflow =
@@ -107,7 +108,7 @@ export default function Navbar() {
     <>
       <header
         className="fixed inset-x-0 z-40 border-b border-gold/25 bg-[#3F010C] text-white transition-[top] duration-300 ease-in-out"
-        style={{ top: isScrolled ? 0 : ANNOUNCEMENT_BAR_HEIGHT }}
+        style={{ top:  isHome && !isScrolled ?  ANNOUNCEMENT_BAR_HEIGHT :0}}
       >
         <nav
           aria-label="Primary"

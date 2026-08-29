@@ -2,8 +2,7 @@ import { useState } from 'react'
 
 
 import HeroSection from './Herosection'
-// import FeaturedCollections from './pages/Featuredcollections'
-// import BrandStory from './pages/Brandstory'
+
 import Footer from './Footer'
 import FeaturedProducts from './Featuredproducts'
 import InstagramFeed from './Instagramfeed'
@@ -19,9 +18,9 @@ function Home() {
     <AnnouncementBar />
      <Navbar /> 
      <HeroSection /> 
-     {/* <FeaturedCollections />  */}
+     
      <FeaturedProducts />
-     {/* <BrandStory />  */}
+     
      
      <InstagramFeed />
      <USPSlider />

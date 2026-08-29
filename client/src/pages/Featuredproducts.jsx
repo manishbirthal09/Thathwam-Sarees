@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductCardSkeleton from "../ui/ProductCardSkeleton";
 import SectionIntro from "../ui/Sectionintro";
 import api from "../api/axios";
@@ -6,10 +6,6 @@ import { useCart } from "../context/CartContext";
 import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 import { Link, useNavigate } from "react-router-dom";
-
-
-
-
 
 function WishlistButton({ productName }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -45,19 +41,38 @@ function WishlistButton({ productName }) {
   );
 }
 
+function ProductImage({ src, alt }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
 
+  return (
+    <div className="relative aspect-[4/5] w-full overflow-hidden bg-ivory">
+      {!imageLoaded && (
+        <div className="absolute inset-0 animate-pulse bg-gray-200" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setImageLoaded(true)}
+        className={`h-full w-full object-cover object-center transition-transform duration-[700ms] ease-in-out group-hover:scale-105 ${
+          imageLoaded ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-300`}
+      />
+    </div>
+  );
+}
 
 export default function FeaturedProducts() {
-const [products, setProducts] = useState([]);
-   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
     api.get("/products", { params: { limit: 100 } }).then(({ data }) => {
       const featured = data.products.filter((p) => p.isFeatured);
-      setProducts(featured.length > 0 ? featured : data.products.slice(0, 4));
-      setLoading(false); 
+      setProducts(featured.length > 0 ? featured : data.products.slice(0, 8));
+      setLoading(false);
     });
   }, []);
 
@@ -74,7 +89,6 @@ const [products, setProducts] = useState([]);
 
   if (!loading && products.length === 0) return null;
 
-
   return (
     <section
       aria-labelledby="featured-products-heading"
@@ -90,8 +104,8 @@ const [products, setProducts] = useState([]);
 
       <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-5 gap-y-12 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-8 min-w-0">
         {loading ? (
-    Array.from({ length: 4 }).map((_, i) => <ProductCardSkeleton key={i} />)
-  ) : (
+          Array.from({ length: 8 }).map((_, i) => <ProductCardSkeleton key={i} />)
+        ) : (
           products.map((p) => {
             const displayPrice = p.discountPrice || p.price;
             const hasDiscount = p.discountPrice && p.discountPrice < p.price;
@@ -101,84 +115,73 @@ const [products, setProducts] = useState([]);
             const imageUrl = p.images?.[0]?.url || p.images?.[0];
 
             return (
-        
-       <Card key={p._id} className="group cursor-pointer">
+              <Card key={p._id} className="group cursor-pointer">
                 <Link to={`/products/${p._id}`}>
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-ivory">
-        <img
-          src={imageUrl}
-          alt={p.name}
-          loading="lazy"
-          className="h-full w-full object-cover object-center transition-transform duration-[700ms] ease-in-out group-hover:scale-105"
-        />
-        <WishlistButton productName={p.name} />
-      </div>
-</Link>
-      {/* Content block */}
-      <div className="mt-5  px-4 pb-4 ">
-        <Link to={`/products/${p._id}`}>
-          <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl">
-            {p.name}
-          </h3>
-        </Link>
+                  <div className="relative">
+                    <ProductImage src={imageUrl} alt={p.name} />
+                    <WishlistButton productName={p.name} />
+                  </div>
+                </Link>
 
-        <p className="mt-1.5 text-sm leading-tight text-[#3F010C]">
-          {p.description}
-        </p>
+                <div className="mt-5 px-4 pb-4">
+                  <Link to={`/products/${p._id}`}>
+                    <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl">
+                      {p.name}
+                    </h3>
+                  </Link>
 
-        
-        <div className="mt-1.5 flex items-center gap-2 flex-wrap">
-  {hasDiscount && (
-    <span className="text-xs text-black/40 line-through">
-      ₹{p.price.toLocaleString("en-IN")}
-    </span>
-  )}
-  <span className="text-sm font-medium text-black">
-    ₹{displayPrice.toLocaleString("en-IN")}
-  </span>
-  {hasDiscount && (
-    <span className="text-xs font-medium text-green-700">
-      {discountPct}% OFF
-    </span>
-  )}
-</div>
-        </div>
+                  <p className="mt-1.5 text-sm leading-tight text-[#3F010C]">
+                    {p.description}
+                  </p>
 
-        <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
-          <button
-             onClick={(e) => handleAddToCart(e, p._id)}
-            className="flex-1 min-w-0 border border-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C]  transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
-          >
-            Add to Cart
-          </button>
+                  <div className="mt-1.5 flex items-center gap-2 flex-wrap">
+                    {hasDiscount && (
+                      <span className="text-xs text-black/40 line-through">
+                        ₹{p.price.toLocaleString("en-IN")}
+                      </span>
+                    )}
+                    <span className="text-sm font-medium text-black">
+                      ₹{displayPrice.toLocaleString("en-IN")}
+                    </span>
+                    {hasDiscount && (
+                      <span className="text-xs font-medium text-green-700">
+                        {discountPct}% OFF
+                      </span>
+                    )}
+                  </div>
+                </div>
 
-          <button
-            onClick={(e) => handleBuyNow(e, p._id)}
-            className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white  transition-colors duration-300 hover:bg-black"
-  
-          >
-            Buy Now
-            <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover/cta:w-full" />
-          </button>
-        </div>
-      
-      </Card>
+                <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
+                  <button
+                    onClick={(e) => handleAddToCart(e, p._id)}
+                    className="flex-1 min-w-0 border border-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+                  >
+                    Add to Cart
+                  </button>
+
+                  <button
+                    onClick={(e) => handleBuyNow(e, p._id)}
+                    className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white transition-colors duration-300 hover:bg-black"
+                  >
+                    Buy Now
+                    <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover/cta:w-full" />
+                  </button>
+                </div>
+              </Card>
             );
           })
         )}
-      </div>      
-    
-        
-      
+      </div>
+
       <div className="mt-12 flex justify-center sm:mt-16 lg:mt-20">
-        <Link asChild to="/products">
-        <button
+        <Link to="/products">
+          <button
             type="button"
             className="border border-[#3F010C] px-5 py-2 text-[10px] font-medium uppercase tracking-label text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-#3F010C hover:bg-[#3F010C] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-#3F010C focus-visible:ring-offset-2"
           >
             View all colllections
           </button>
-          </Link>
+        </Link>
       </div>
     </section>
   );

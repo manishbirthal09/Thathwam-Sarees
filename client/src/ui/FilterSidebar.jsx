@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
-const staticFilterOptions = {
-  fabrics: ["Silk", "Cotton", "Chiffon", "Georgette", "Banarasi"],
-  colors: ["Red", "Blue", "Green", "Gold", "Pink", "Black"],
-};
+
 
 export default function FilterSidebar({ filters, setFilters }) {
   const [categories, setCategories] = useState([]);
@@ -45,9 +42,7 @@ export default function FilterSidebar({ filters, setFilters }) {
   return (
     <aside className="w-full md:w-56 shrink-0">
       <FilterGroup title="Category" type="categories" options={categories.map((c) => c.name)} />
-      <FilterGroup title="Fabric" type="fabrics" options={staticFilterOptions.fabrics} />
-      <FilterGroup title="Color" type="colors" options={staticFilterOptions.colors} />
-
+      
       <div className="mb-6">
         <h4 className="font-medium text-sm text-brand-text mb-3">Price Range</h4>
         <input

@@ -168,20 +168,30 @@ export default function ProductDetail() {
               Buy Now
             </button>
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 py-4 border-t border-b border-gray-200 text-sm text-[#3F010C]">
-            <div className="flex items-center gap-2">
-              <Truck size={16} />
-              <span>5-7 Day Shipping</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <RotateCcw size={16} />
-              <span>Quick & Easy Exchanges</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Check size={16} />
-              <span>Secure Payments</span>
-            </div>
-          </div>
+         
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-6 my-6 border-t border-b border-gray-200">
+  <div className="flex items-center gap-3">
+    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#3F010C]/5">
+      <Truck size={16} className="text-[#3F010C]" />
+    </div>
+    <span className="text-xs font-medium text-[#3F010C]">Fast & Reliable Shipping</span>
+  </div>
+
+  <div className="flex items-center gap-3">
+    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#3F010C]/5">
+      <RotateCcw size={16} className="text-[#3F010C]" />
+    </div>
+    <span className="text-xs font-medium text-[#3F010C]">Delivered With Care, 5-7 Days</span>
+  </div>
+
+  <div className="flex items-center gap-3">
+    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#3F010C]/5">
+      <Check size={16} className="text-[#3F010C]" />
+    </div>
+    <span className="text-xs font-medium text-[#3F010C]">Safe & Encrypted Payments</span>
+  </div>
+</div>
+         
         </div>
       </div>
     </div>

@@ -1,39 +1,31 @@
-import { useRef } from "react";
 import SectionIntro from "../ui/Sectionintro";
 import Button from "../ui/Button";
-
-
 
 const POSTS = [
   {
     id: "post-1",
-    image:
-      "/i1.jpg",
+    image: "/i1.jpg",
     alt: "Woman in a burgundy silk saree at a festive gathering",
     permalink: "https://www.instagram.com/thathwamsarees/?hl=en",
   },
   {
     id: "post-2",
-    image:
-      "/i2.jpg",
+    image: "/i2.jpg",
     alt: "Bride adjusting the pallu of a hand-embroidered saree",
     permalink: "https://www.instagram.com/thathwamsarees/?hl=en",
   },
   {
     id: "post-3",
-    image:
-      "/i3.jpg",
+    image: "/i3.jpg",
     alt: "Candid moment at a wedding celebration in traditional silk",
     permalink: "https://www.instagram.com/thathwamsarees/?hl=en",
   },
   {
     id: "post-4",
-    image:
-      "/i4.jpg",
+    image: "/i4.jpg",
     alt: "Everyday elegance — cotton saree styled for a morning outing",
     permalink: "https://www.instagram.com/thathwamsarees/?hl=en",
   },
-
 ];
 
 function InstagramGlyph(props) {
@@ -46,27 +38,7 @@ function InstagramGlyph(props) {
   );
 }
 
-function ArrowIcon({ direction = "right", ...props }) {
-  const d = direction === "left" ? "M10 2L4 8l6 6" : "M6 2l6 6-6 6";
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path d={d} stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function InstagramFeed() {
-  const trackRef = useRef(null);
-
-  const scrollByCards = (direction) => {
-    const track = trackRef.current;
-    if (!track) return;
-    track.scrollBy({
-      left: direction * track.clientWidth * 0.85,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section
       aria-labelledby="instagram-feed-heading"
@@ -81,62 +53,36 @@ export default function InstagramFeed() {
         />
       </div>
 
-      
-      <div className="relative">
-        <div
-          ref={trackRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth px-6 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] snap-x snap-mandatory sm:gap-8 sm:px-10 md:px-16 lg:gap-10 lg:px-20 [&::-webkit-scrollbar]:hidden"
-        >
-          {POSTS.map((post) => (
-            <a
-              key={post.id}
-              href={post.permalink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View this post on Instagram"
-              className="group relative block flex-none snap-start overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 w-[calc(50%-12px)] sm:w-[calc(33.334%-22px)] lg:w-[calc(25%-30px)]"
-            >
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-ivory">
-                <img
-                  src={post.image}
-                  alt={post.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-center transition-transform duration-[700ms] ease-in-out group-hover:scale-105"
-                />
+      <div className="grid grid-cols-2 gap-4 px-6 sm:grid-cols-3 sm:gap-8 sm:px-10 md:px-16 lg:grid-cols-4 lg:gap-10 lg:px-20">
+        {POSTS.map((post) => (
+          <a
+            key={post.id}
+            href={post.permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View this post on Instagram"
+            className="group relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2"
+          >
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-ivory">
+              <img
+                src={post.image}
+                alt={post.alt}
+                loading="lazy"
+                className="h-full w-full object-cover object-center transition-transform duration-[700ms] ease-in-out group-hover:scale-105"
+              />
 
-                
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/0 opacity-0 transition-all duration-300 ease-in-out group-hover:bg-black/35 group-hover:opacity-100 group-focus-visible:bg-black/35 group-focus-visible:opacity-100">
-                  <InstagramGlyph className="text-ivory" />
-                  <span className="text-[10px] font-medium uppercase tracking-label text-ivory">
-                    View Post
-                  </span>
-                </div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/0 opacity-0 transition-all duration-300 ease-in-out group-hover:bg-black/35 group-hover:opacity-100 group-focus-visible:bg-black/35 group-focus-visible:opacity-100">
+                <InstagramGlyph className="text-ivory" />
+                <span className="text-[10px] font-medium uppercase tracking-label text-ivory">
+                  View Post
+                </span>
               </div>
-            </a>
-          ))}
-        </div>
-
-        
-        <button
-          type="button"
-          onClick={() => scrollByCards(-1)}
-          aria-label="Scroll to previous posts"
-          className="absolute left-2 top-[calc(50%-16px)] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-black/20 bg-white/90 text-black/70 opacity-90 transition-all duration-300 ease-in-out hover:border-black/40 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 lg:flex lg:left-6"
-        >
-          <ArrowIcon direction="left" />
-        </button>
-
-        <button
-          type="button"
-          onClick={() => scrollByCards(1)}
-          aria-label="Scroll to next posts"
-          className="absolute right-2 top-[calc(50%-16px)] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-black/20 bg-white/90 text-black/70 opacity-90 transition-all duration-300 ease-in-out hover:border-black/40 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 lg:flex lg:right-6"
-        >
-          <ArrowIcon direction="right" />
-        </button>
+            </div>
+          </a>
+        ))}
       </div>
 
-           <div className="mt-14 flex justify-center sm:mt-16 ">
+      <div className="mt-14 flex justify-center sm:mt-16">
         <Button
           as="a"
           href="https://www.instagram.com/thathwamsarees/?hl=en"

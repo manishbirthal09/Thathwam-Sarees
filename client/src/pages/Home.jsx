@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import HeroSection from './Herosection'
 
-import Footer from './Footer'
+
 import FeaturedProducts from './Featuredproducts'
 import InstagramFeed from './Instagramfeed'
 import Navbar from './Navbar'
@@ -24,7 +24,7 @@ function Home() {
      
      <InstagramFeed />
      <USPSlider />
-     <Footer /> 
+      
     </>
   )
 }

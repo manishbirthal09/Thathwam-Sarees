@@ -31,7 +31,32 @@ export default function ProductCard({ product }) {
       </Link>
       <div className="pt-3">
         <h3 className="font-serif text-base text-brand-text">{product.name}</h3>
-        <p className="text-sm text-gray-500 mt-1">₹{product.price.toLocaleString("en-IN")}</p>
+        
+        {(() => {
+  const hasDiscount = product.discountPrice && product.discountPrice < product.price;
+  const displayPrice = product.discountPrice || product.price;
+  const discountPct = hasDiscount
+    ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+    : 0;
+
+  return (
+    <div className="mt-1 flex items-center gap-2 flex-wrap">
+      {hasDiscount && (
+        <span className="text-xs text-gray-400 line-through">
+          ₹{product.price.toLocaleString("en-IN")}
+        </span>
+      )}
+      <span className="text-sm text-brand-text font-medium">
+        ₹{displayPrice.toLocaleString("en-IN")}
+      </span>
+      {hasDiscount && (
+        <span className="text-xs font-medium text-green-700">
+          {discountPct}% OFF
+        </span>
+      )}
+    </div>
+  );
+})()}
         <div className="flex gap-2 mt-3 min-w-0">
           <Button  className="flex-1 min-w-0 whitespace-nowrap px-2 text-[10px] sm:text-xs border border-[#3F010C]" onClick={handleAddToCart}>
   Add to Cart

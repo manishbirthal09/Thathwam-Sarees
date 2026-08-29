@@ -126,7 +126,22 @@ const [products, setProducts] = useState([]);
           {p.description}
         </p>
 
-        <p className="mt-1.5 text-sm font-medium text-black">₹{displayPrice.toLocaleString("en-IN")}</p>
+        
+        <div className="mt-1.5 flex items-center gap-2 flex-wrap">
+  {hasDiscount && (
+    <span className="text-xs text-black/40 line-through">
+      ₹{p.price.toLocaleString("en-IN")}
+    </span>
+  )}
+  <span className="text-sm font-medium text-black">
+    ₹{displayPrice.toLocaleString("en-IN")}
+  </span>
+  {hasDiscount && (
+    <span className="text-xs font-medium text-green-700">
+      {discountPct}% OFF
+    </span>
+  )}
+</div>
         </div>
 
         <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">

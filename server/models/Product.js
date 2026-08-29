@@ -4,6 +4,7 @@ const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
+    originalPrice: { type: Number, required: true },
     category: {
   type: mongoose.Schema.Types.ObjectId,
   ref: "Category",
@@ -12,7 +13,7 @@ const productSchema = new mongoose.Schema(
     
     description: { type: String },
     stock: { type: Number, default: 10 },
-    images: [{ type: String }], // Cloudinary URLs
+    images: [{ type: String }], 
   },
   { timestamps: true }
 );

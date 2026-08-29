@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Profile from "./pages/Profile";
 import Footer from "./pages/Footer";
+import Layout from "./ui/Layout";
 // import PrivacyPolicy from "./pages/policies/PrivacyPolicy";
 // import RefundPolicy from "./pages/policies/RefundPolicy";
 // import ReturnPolicy from "./pages/policies/ReturnPolicy";
@@ -22,10 +23,12 @@ export default function App() {
       <CustomerAuthProvider>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+          
         
         {/* <Route path="/reviews" element={<Testimonials />} /> */}
          <Route path="/login" element={<Login />} />          
@@ -38,6 +41,7 @@ export default function App() {
 <Route path="/refund_policy" element={<RefundPolicy />} />
 <Route path="/returns" element={<ReturnPolicy />} />
 <Route path="/shipping" element={<ShippingPolicy />} /> */}
+</Route>
       </Routes>
     </BrowserRouter>
     </CustomerAuthProvider>

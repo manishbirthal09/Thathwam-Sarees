@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { User, ChevronDown } from "lucide-react";
 import { useCustomerAuth } from "../context/CustomerAuthContext";
 import { useCart } from "../context/CartContext";
+import { useLocation } from "react-router-dom";
 import api from "../api/axios";
 
 const NAV_LINKS = [
@@ -49,6 +50,8 @@ function MenuIcon(props) {
 }
 
 export default function Navbar() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

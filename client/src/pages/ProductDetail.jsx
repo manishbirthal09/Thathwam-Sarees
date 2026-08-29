@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
+import { Truck, RotateCcw, Check } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {

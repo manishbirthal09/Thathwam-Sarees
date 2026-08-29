@@ -167,6 +167,20 @@ export default function ProductDetail() {
               Buy Now
             </button>
           </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 py-4 border-t border-b border-gray-200 text-sm text-[#3F010C]">
+            <div className="flex items-center gap-2">
+              <Truck size={16} />
+              <span>5-7 Day Shipping</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <RotateCcw size={16} />
+              <span>Quick & Easy Exchanges</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check size={16} />
+              <span>Secure Payments</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

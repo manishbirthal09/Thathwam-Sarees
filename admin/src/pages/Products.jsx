@@ -52,6 +52,7 @@ export default function Products() {
               <th className="p-3">Name</th>
               <th className="p-3">Category</th>
               <th className="p-3">Price</th>
+              <th className="p-3">Discount Price</th>
               <th className="p-3">Stock</th>
               <th className="p-3">Actions</th>
             </tr>
@@ -73,6 +74,7 @@ export default function Products() {
                 <td className="p-3">{p.name}</td>
                 <td className="p-3 text-gray-500">{p.category?.name}</td>
                 <td className="p-3">₹{p.price}</td>
+                <td className="p-3">{p.discountPrice ? `₹${p.discountPrice}` : "-"}</td>
                 <td className="p-3">{p.stock}</td>
                 <td className="p-3 space-x-3">
                   <button

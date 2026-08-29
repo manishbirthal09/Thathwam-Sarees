@@ -154,7 +154,7 @@ export default function FeaturedProducts() {
                 <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
                   <button
                     onClick={(e) => handleAddToCart(e, p._id)}
-                    className="flex-1 min-w-0 border border-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+                    className="flex-1 min-w-0 border border-[#3F010C] px-0.5 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-tighter text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
                   >
                     Add to Cart
                   </button>

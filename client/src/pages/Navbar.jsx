@@ -268,7 +268,7 @@ import api from "../api/axios";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Collection", href: "/collection" },
+  { label: "Collection", href: "/products" },
 ];
 
 const SCROLL_THRESHOLD = ANNOUNCEMENT_BAR_HEIGHT;
@@ -397,7 +397,9 @@ export default function Navbar() {
               </button>
 
               {isCategoriesOpen && categories.length > 0 && (
-                <div className="absolute top-full left-0 mt-2 min-w-[180px] bg-[#3F010C] border border-gold/25 shadow-lg py-2 z-50">
+                 <div className="absolute top-full left-0 pt-2 z-50">
+      <div className="min-w-[180px] bg-[#3F010C] border border-gold/25 shadow-lg py-2">
+                
                   {categories.map((cat) => (
                     <a
                       key={cat._id}
@@ -407,6 +409,7 @@ export default function Navbar() {
                       {cat.name}
                     </a>
                   ))}
+                </div>
                 </div>
               )}
             </li>

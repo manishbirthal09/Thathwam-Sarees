@@ -7,6 +7,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
     name: product?.name || "",
     description: product?.description || "",
     price: product?.price || "",
+     discountPrice: product?.discountPrice || "",
     stock: product?.stock || "",
     category: product?.category?._id || "",
     
@@ -86,11 +87,11 @@ export default function ProductForm({ product, onClose, onSaved }) {
             />
           </div>
            <div>
-            <label className="text-sm text-gray-600">Original Price</label>
+            <label className="text-sm text-gray-600">Discount Price (optional)</label>
             <input
-              name="originalPrice"
+              name="discountPrice"
               type="number"
-              value={form.originalPrice}
+              value={form.discountPrice}
               onChange={handleChange}
               required
               className="w-full border rounded-md px-3 py-2 mt-1 text-sm"

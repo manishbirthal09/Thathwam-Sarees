@@ -46,9 +46,7 @@ export default function Products() {
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="flex justify-between ">
         <h1 className="text-3xl mb-6 text-brand-text">Our Collections</h1>
-<Link asChild to="/">
-<button className="border border-[#3F010C] px-2 py-0.5 font-bold">Go Home</button>
-</Link>
+
       </div>
       <div className="relative max-w-md mb-8">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />

@@ -6,10 +6,10 @@ export const createRazorpayOrder = async (req, res) => {
     const { amount, orderId } = req.body;
     
     const options = {
-      amount: amount * 100,     // Razorpay expects PAISE, not rupees. ₹499 => 49900
+      amount: amount * 100,     
       currency: "INR",
-      receipt: `receipt_${orderId}`, // your own internal order reference
-      payment_capture: 1,        // 1 = auto-capture payment immediately after authorization
+      receipt: `receipt_${orderId}`, 
+      payment_capture: 1,        
     };
 
     const razorpayOrder = await razorpayInstance.orders.create(options);
@@ -17,7 +17,7 @@ export const createRazorpayOrder = async (req, res) => {
     
     await Order.findByIdAndUpdate(orderId, {
       razorpay_order_id: razorpayOrder.id,
-      payment_status: "created",
+      payment_Status: "created",
     });
 
       res.status(200).json({
@@ -40,7 +40,7 @@ export const verifyRazorpayPayment = async (req, res) => {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      orderId, // your internal order _id
+      orderId, 
     } = req.body;
 
         const generatedSignature = crypto
@@ -51,7 +51,7 @@ export const verifyRazorpayPayment = async (req, res) => {
     const isSignatureValid = generatedSignature === razorpay_signature;
 
     if (!isSignatureValid) {
-      await Order.findByIdAndUpdate(orderId, { payment_status: "failed" });
+      await Order.findByIdAndUpdate(orderId, { payment_Status: "failed" });
       return res.status(400).json({ success: false, message: "Invalid signature — payment not trusted" });
     }
 
@@ -59,7 +59,7 @@ export const verifyRazorpayPayment = async (req, res) => {
     await Order.findByIdAndUpdate(orderId, {
       razorpay_payment_id,
       razorpay_signature,
-      payment_status: "paid",
+      payment_Status: "paid",
     });
 
     res.status(200).json({ success: true, message: "Payment verified successfully" });

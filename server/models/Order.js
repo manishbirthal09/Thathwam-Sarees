@@ -30,11 +30,7 @@ const orderSchema = new mongoose.Schema(
   razorpay_signature: {
     type: String, 
   },
-//   payment_status: {
-//     type: String,
-//     enum: ["created", "paid", "failed"],
-//     default: "created",
-//   },      
+     
     status: {
       type: String,
       enum: ["created", "paid", "failed"],

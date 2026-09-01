@@ -17,7 +17,7 @@ export const createRazorpayOrder = async (req, res) => {
     
     await Order.findByIdAndUpdate(orderId, {
       razorpay_order_id: razorpayOrder.id,
-      payment_Status: "created",
+      paymentStatus: "created",
     });
 
       res.status(200).json({
@@ -25,7 +25,7 @@ export const createRazorpayOrder = async (req, res) => {
       order_id: razorpayOrder.id,
       amount: razorpayOrder.amount,
       currency: razorpayOrder.currency,
-      key_id: process.env.RAZORPAY_KEY_ID, // public key, safe to expose
+      key_id: process.env.RAZORPAY_KEY_ID, 
     });
   } catch (error) {
     console.error("Razorpay order creation failed:", error);
@@ -51,7 +51,7 @@ export const verifyRazorpayPayment = async (req, res) => {
     const isSignatureValid = generatedSignature === razorpay_signature;
 
     if (!isSignatureValid) {
-      await Order.findByIdAndUpdate(orderId, { payment_Status: "failed" });
+      await Order.findByIdAndUpdate(orderId, { paymentStatus: "failed" });
       return res.status(400).json({ success: false, message: "Invalid signature — payment not trusted" });
     }
 
@@ -59,7 +59,7 @@ export const verifyRazorpayPayment = async (req, res) => {
     await Order.findByIdAndUpdate(orderId, {
       razorpay_payment_id,
       razorpay_signature,
-      payment_Status: "paid",
+      paymentStatus: "paid",
     });
 
     res.status(200).json({ success: true, message: "Payment verified successfully" });

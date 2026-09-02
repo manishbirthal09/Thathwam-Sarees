@@ -2,36 +2,28 @@ import { useState } from "react";
 
 
 
-const COLLECTION_LINKS = [
-  { label: "Banarasi", href: "/collections/banarasi" },
-  { label: "Kanchipuram", href: "/collections/kanchipuram" },
-  { label: "Crepe Silk", href: "/collections/crepe-silk" },
-  { label: "View All Collections", href: "/collections" },
+const CUSTOMER_SERVICE_LINKS = [
+  { label: "Shipping Policy", href: "/shipping" },
+  { label: "Returns & Exchanges", href: "/returns" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact Us", href: "/footer" },
 ];
 
-const ABOUT_LINKS = [
-  { label: "Our Story", href: "/about" },
-  { label: "Craftsmanship", href: "/craftsmanship" },
-  { label: "Journal", href: "/journal" },
-];
+
 
 const CONTACT_LINKS = [
   { label: "hello@brandname.com", href: "mailto:hello@brandname.com" },
-  { label: "+91 00000 00000", href: "tel:+910000000000" },
-  { label: "Find a Store", href: "/stores" },
+  { label: "+91 63669 99958", href: "tel:+916366999958" },
+  { label: "Find a Store", href: "https://maps.app.goo.gl/caN3r8Hj7TEb3XcYA" },
 ];
 
 const SOCIAL_LINKS = [
   {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/thathwamsarees/",
     path: "M8 2h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6zm0 2a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4H8zm4 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2zM17.4 6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 17.4 6z",
   },
-  {
-    label: "Pinterest",
-    href: "https://pinterest.com",
-    path: "M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.6l1.4-6s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-1 3.9-.3 1.2.6 2.1 1.7 2.1 2.1 0 3.6-2.7 3.6-5.8 0-2.4-1.6-4.2-4.6-4.2-3.3 0-5.4 2.5-5.4 5.2 0 1 .3 1.6.7 2.1.2.2.2.3.1.6l-.3 1c0 .2-.2.3-.4.2-1.2-.5-1.8-1.9-1.8-3.4 0-2.6 2.2-5.7 6.5-5.7 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.3-4.9 6.3-1 0-1.9-.5-2.2-1.1l-.6 2.4c-.2.9-.7 1.9-1.1 2.6A10 10 0 1 0 12 2z",
-  },
+  
   {
     label: "Facebook",
     href: "https://facebook.com",
@@ -127,9 +119,9 @@ export default function Footer() {
 
           
           <div className="lg:col-span-2 lg:col-start-6">
-            <FooterHeading>Collections</FooterHeading>
+            <FooterHeading>Customer Service</FooterHeading>
             <ul className="space-y-3.5">
-              {COLLECTION_LINKS.map((link) => (
+              {CUSTOMER_SERVICE_LINKS.map((link) => (
                 <li key={link.label}>
                   <FooterLink href={link.href}>{link.label}</FooterLink>
                 </li>
@@ -137,16 +129,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <FooterHeading>About</FooterHeading>
-            <ul className="space-y-3.5">
-              {ABOUT_LINKS.map((link) => (
-                <li key={link.label}>
-                  <FooterLink href={link.href}>{link.label}</FooterLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+          
 
           <div className="lg:col-span-3">
             <FooterHeading>Contact</FooterHeading>
@@ -170,7 +153,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-[#E2DED3]/70 transition-colors duration-300 ease-in-out hover:text-[#B8AD85]"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d={social.path} />
               </svg>
             </a>
@@ -193,7 +176,7 @@ export default function Footer() {
               href="/terms"
               className="text-[11px] uppercase tracking-[0.14em] text-[#E2DED3]/45 transition-colors duration-300 ease-in-out hover:text-[#E2DED3]/80"
             >
-              Terms
+              Terms & Conditions
             </a>
           </div>
         </div>

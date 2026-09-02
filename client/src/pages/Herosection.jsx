@@ -1,34 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-/**
- * HeroSection
- * -----------------------------------------------------------------------
- * Full-bleed editorial hero slider for a luxury saree brand.
- * Built to sit directly under a transparent navbar — text is anchored
- * low in the frame so the top of the photography stays clear.
- *
- * Design tokens used (add these to tailwind.config.js theme.extend.colors
- * so the rest of the app can reuse them):
- *   #3F010C: '#3F010C'
- *   ivory:    '#E2DED3'
- *   gold:     '#B8AD85'
- *
- * Replace the `image` values in SLIDES with real campaign photography
- * (portrait-leaning crops, 4:5 or 3:4, min width 1600px) before launch.
- * -----------------------------------------------------------------------
- */
+
 
 
 const SLIDES = [
-  // {
-  //   id: "slide-weave",
-  //   image:
-  //     "/TB1.webp",
-  //   eyebrow: "Autumn Weave",
-  //   headline: "Woven in Silence",
-  //   copy:
-  //     "Hand-loomed , dyed , finished without haste.",
-  // },
+ 
   {
     id: "slide-heritage",
     image:
@@ -58,44 +34,7 @@ const SLIDES = [
   },
 ];
 
-// const SLIDES = [
-//   {
-//     id: "slide-weave",
-//     image:
-//       "/TB1.webp",
-//     eyebrow: "The Autumn Weave",
-//     headline: "Woven in Silence",
-//     copy:
-//       "Each drape carries the hands that made it — hand-loomed silk, dyed in small batches, finished without haste.",
-//   },
-//   {
-//     id: "slide-heritage",
-//     image:
-//       "/TB2.webp",
-//     eyebrow: "Heritage Edit",
-//     headline: "A Quiet Kind of Grandeur",
-//     copy:
-//       "Sarees drawn from six weaving houses across India, chosen for craft that doesn't need to announce itself.",
-//   },
-//   {
-//     id: "slide-bridal",
-//     image:
-//       "/TB3.webp",
-//     eyebrow: "The Bridal Edit",
-//     headline: "Made to Be Remembered",
-//     copy:
-//       "For the days that ask for more — zari borders, hand-finished pallus, and silhouettes that hold their shape.",
-//   },
-//    {
-//     id: "slide-bridal",
-//     image:
-//       "/TB4.webp",
-//     eyebrow: "The Bridal Edit",
-//     headline: "Made to Be Remembered",
-//     copy:
-//       "For the days that ask for more — zari borders, hand-finished pallus, and silhouettes that hold their shape.",
-//   },
-// ];
+
 
 const AUTOPLAY_MS = 7000;
 const SWIPE_THRESHOLD_PX = 50;
@@ -113,14 +52,14 @@ export default function HeroSection() {
   const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
 
-  // Slow, pausable autoplay
+  
   useEffect(() => {
     if (isPaused) return undefined;
     const timer = setInterval(goNext, AUTOPLAY_MS);
     return () => clearInterval(timer);
   }, [isPaused, goNext]);
 
-  // Touch / swipe support
+  
   const handleTouchStart = (e) => {
     setIsPaused(true);
     touchStartX.current = e.touches[0].clientX;
@@ -142,7 +81,7 @@ export default function HeroSection() {
     }
     touchStartX.current = null;
     touchDeltaX.current = 0;
-    // Resume autoplay after a brief pause so the swipe feels intentional
+
     setTimeout(() => setIsPaused(false), 1500);
   };
 
@@ -151,14 +90,14 @@ export default function HeroSection() {
       aria-label="Featured collections"
       className="relative aspect-[5/4] w-full  overflow-hidden bg-black py-20 mt-8 lg:aspect-auto lg:h-[calc(100vh-20px)] lg:mt-0 lg:py-0"
       
-      // className="relative h-[65vh] min-h-[420px] w-full overflow-hidden bg-black md:h-[75vh] md:min-h-[560px]"
+      
         onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Slides */}
+      
       <div className="absolute inset-0">
         {SLIDES.map((slide, index) => (
           <div
@@ -183,72 +122,7 @@ export default function HeroSection() {
 
 
 
-{/* Content — anchored bottom-left, clear of the transparent navbar */}
-{/* <div className="relative z-10 flex h-full w-full items-end  ">
-  <div className="w-full px-4 translate-y-16  sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">
-    <div className="max-w-xl">
-      {/* <p className="mb-1.5 text-[9px] font-medium uppercase tracking-[0.16em] text-[#B8AD85] sm:mb-3 sm:text-xs">
-        {SLIDES[activeIndex].eyebrow}
-      </p> 
 
-      <h1 className="font-serif text-xl font-bold leading-[1.1] tracking-[-0.01em] text-[#3F010C] sm:text-5xl md:text-6xl lg:text-7xl">
-        {SLIDES[activeIndex].headline}
-      </h1>
-
-      <p className="mt-2 max-w-[25ch] text-[11px] font-normal leading-snug text-[#3F010C] sm:mt-5 sm:text-base sm:leading-relaxed">
-        {SLIDES[activeIndex].copy}
-      </p>
-
-      <div className="mt-2 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-8">
-        <button
-          type="button"
-          className="border border-[#3F010C] px-1 py-1 text-[6px] font-medium uppercase tracking-[0.12em] text-[#3F010C] transition-colors duration-300 ease-in-out hover:border-white hover:bg-white hover:text-black sm:px-10 sm:py-4 sm:text-xs sm:tracking-[0.14em]"
-        >
-          Shop now
-        </button>
-      </div>
-    </div>
-  </div>
-</div> */}
-      {/* Content — anchored bottom-left, clear of the transparent navbar */}
-      {/* <div className="relative z-10 flex h-full w-full items-end">
-        <div className="w-full px-6 pb-16 sm:px-10 sm:pb-20 md:px-16 md:pb-24 lg:px-20 lg:pb-28">
-          <div className="max-w-xl">
-            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#B8AD85] sm:text-xs">
-              {SLIDES[activeIndex].eyebrow}
-            </p>
-
-            <h1 className="font-serif text-4xl font-normal leading-[1.08] tracking-[-0.01em] text-[#E2DED3] sm:text-5xl md:text-6xl lg:text-7xl">
-              {SLIDES[activeIndex].headline}
-            </h1>
-
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/85 sm:text-base">
-              {SLIDES[activeIndex].copy}
-            </p>
-
-             
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <button
-                type="button"
-                className="border border-white/80 px-2 py-1 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors duration-300 ease-in-out hover:border-white hover:bg-white hover:text-black sm:px-10 sm:py-4"
-              >
-                Explore Collection
-              </button>
-              
-
-              {/* <button
-                type="button"
-                className="group relative text-xs font-medium uppercase tracking-[0.14em] text-white/90 transition-colors duration-300 ease-in-out hover:text-white"
-              >
-                Our Story
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#B8AD85] transition-all duration-300 ease-in-out group-hover:w-full" />
-              </button> 
-            </div>
-          </div> 
-        </div>
-      </div> */}
-
-      {/* Prev / Next arrows */}
       <button
         type="button"
         onClick={goPrev}
@@ -271,7 +145,7 @@ export default function HeroSection() {
         </svg>
       </button>
 
-      {/* Slide indicators — hairlines, not dots */}
+      
       <div
         className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 sm:bottom-8"
         role="tablist"

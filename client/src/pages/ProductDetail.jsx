@@ -46,6 +46,7 @@ export default function ProductDetail() {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
+  const [openSection, setOpenSection] = useState("description");
 
   useEffect(() => {
     setLoading(true);
@@ -90,7 +91,9 @@ export default function ProductDetail() {
     setAdding(false);
     navigate("/checkout");
   };
-
+const toggleSection = (section) => {
+  setOpenSection((prev) => (prev === section ? null : section));
+};
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <div className="grid md:grid-cols-2 gap-10">

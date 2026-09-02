@@ -4,6 +4,37 @@ import api from "../api/axios";
 import { Truck, RotateCcw, Check } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
+function AccordionItem({ title, children, isOpen, onClick }) {
+  return (
+    <div className="border-b border-gray-200">
+      <button
+        onClick={onClick}
+        className="w-full flex items-center justify-between py-4 text-left"
+      >
+        <span className="text-sm font-medium text-[#3F010C]">{title}</span>
+        <ChevronDown
+          size={18}
+          className={`text-[#3F010C] transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`grid transition-all duration-200 ease-in-out ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="pb-4 text-sm text-gray-600 leading-relaxed">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -202,6 +233,28 @@ export default function ProductDetail() {
     </div>
     <span className="text-xs font-medium text-[#3F010C]">Safe & Encrypted Payments</span>
   </div>
+</div>
+
+
+<div>
+              <AccordionItem
+              title="Care Instructions"
+              isOpen={openSection === "care"}
+              onClick={() => toggleSection("care")}
+            >
+              Dry clean recommended. Store in a cool, dry place away from direct sunlight.
+              Avoid contact with perfume or sprays directly on the fabric.
+            </AccordionItem>
+            <AccordionItem
+              title="Shipping & Returns"
+              isOpen={openSection === "shipping"}
+              onClick={() => toggleSection("shipping")}
+            >
+              Orders are dispatched within 1-2 business days and delivered in 5-7 days
+              across India. For any issues with your order, please reach out via our
+              contact page within 48 hours of delivery.
+            </AccordionItem>
+
 </div>
          
         </div>

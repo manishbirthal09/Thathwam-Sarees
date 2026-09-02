@@ -1,7 +1,7 @@
 export default function ProductCardSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="aspect-4/5.5 rounded-lg bg-gray-200" />
+      <div className="aspect-[4/5.5] rounded-lg bg-gray-200" />
       <div className="pt-3 space-y-2">
         <div className="h-4 bg-gray-200 rounded w-3/4" />
         <div className="h-3 bg-gray-200 rounded w-1/3" />

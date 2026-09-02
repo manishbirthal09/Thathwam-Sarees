@@ -125,14 +125,12 @@ export default function FeaturedProducts() {
 
                 <div className="mt-5 px-4 pb-4">
                   <Link to={`/products/${p._id}`}>
-                    <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl">
+                    <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]">
                       {p.name}
                     </h3>
                   </Link>
 
-                  <p className="mt-1.5 text-sm leading-tight text-[#3F010C]">
-                    {p.description}
-                  </p>
+                 
 
                   <div className="mt-1.5 flex items-center gap-2 flex-wrap">
                     {hasDiscount && (

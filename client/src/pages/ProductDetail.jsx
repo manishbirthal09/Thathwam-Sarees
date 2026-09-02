@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
-import { Truck, RotateCcw, Check } from "lucide-react";
+import { Truck, RotateCcw, Check, ChevronDown } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 function AccordionItem({ title, children, isOpen, onClick }) {

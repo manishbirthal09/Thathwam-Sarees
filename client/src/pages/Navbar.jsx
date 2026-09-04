@@ -21,7 +21,7 @@ const SCROLL_THRESHOLD = ANNOUNCEMENT_BAR_HEIGHT;
 
 function CartIcon(props) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <path
         d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5L6 8z"
         stroke="currentColor"
@@ -35,7 +35,7 @@ function CartIcon(props) {
 
 function CloseIcon(props) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
@@ -43,7 +43,7 @@ function CloseIcon(props) {
 
 function MenuIcon(props) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
@@ -113,16 +113,20 @@ export default function Navbar() {
         className="fixed inset-x-0 z-40 border-b border-gold/25 bg-[#3F010C] text-white transition-[top] duration-300 ease-in-out"
         style={{ top:  isHome && !isScrolled ?  ANNOUNCEMENT_BAR_HEIGHT :0}}
       >
-        <nav
+        {/* <nav
           aria-label="Primary"
-          className="mx-auto grid h-10 max-w-[1600px] grid-cols-3 items-center px-6 sm:px-10 md:h-20 lg:h-12 lg:px-16"
-        >
+          className="mx-auto grid h-20 max-w-[1600px] grid-cols-3 items-center px-6 sm:px-10 md:h-40 lg:h-24 lg:px-16"
+        > */}
+        <nav
+  aria-label="Primary"
+  className="mx-auto grid h-28 max-w-[1600px] grid-cols-3 items-stretch px-1 sm:px-10 md:h-30 lg:px-7"
+>
           <ul className="hidden items-center gap-9 lg:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className={`group relative text-[12px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
+                  className={`group relative text-[15px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
@@ -138,10 +142,10 @@ export default function Navbar() {
             >
               <button
                 type="button"
-                className={`group relative flex items-center gap-1 text-[12px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
+                className={`group relative flex items-center gap-1 text-[15px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
               >
                 Categories
-                <ChevronDown size={12} />
+                <ChevronDown size={24} />
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
               </button>
 
@@ -166,7 +170,7 @@ export default function Navbar() {
             <li>
               <a
                 href="/contact"
-                className={`group relative text-[12px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
+                className={`group relative text-[15px] font-medium uppercase tracking-label transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C ${linkToneClass}`}
               >
                 Contact
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
@@ -178,19 +182,19 @@ export default function Navbar() {
             type="button"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open menu"
-            className={`justify-self-start p-1 transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C lg:hidden ${iconToneClass}`}
+            className={` flex items-center justify-self-start p-1 transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C lg:hidden ${iconToneClass}`}
           >
             <MenuIcon />
           </button>
 
           <a
             href="/"
-            className="col-start-2 justify-self-center font-serif text-xl font-normal tracking-[-0.01em] text-ivory transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C sm:text-2xl"
+            className="col-start-2  flex items-center justify-self-center font-serif text-xl font-normal tracking-[-0.01em] text-ivory transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-#3F010C sm:text-2xl"
           >
-            <img src="/Thathwamlogofinal.png" alt="Thathwam Sarees" className="h-12 w-auto sm:h-12 rounded-sm" />
+            <img src="/Thathwamlogofinal.png" alt="Thathwam Sarees" className="h-25 w-auto sm:h-16 md:h-28  rounded-sm" />
           </a>
 
-          <div className="flex items-center justify-end gap-5">
+          <div className="flex items-center justify-end gap-3">
             <a
               href="/cart"
               aria-label={`Cart, ${itemCount} items`}
@@ -198,7 +202,7 @@ export default function Navbar() {
             >
               <CartIcon />
               {itemCount > 0 && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[9px] font-medium text-#3F010C">
+                <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gold text-[14px] font-medium text-#3F010C">
                   {itemCount}
                 </span>
               )}
@@ -206,12 +210,12 @@ export default function Navbar() {
             <Link
               to={isAuthenticated ? "/profile" : "/login"}
               aria-label="Profile"
-              className="text-white/70 hover:text-white transition-colors duration-300 flex items-center gap-1.5"
+              className="text-white hover:text-white transition-colors duration-300 flex items-center gap-1.5"
             >
-              <User size={18} strokeWidth={1.5} />
-              {isAuthenticated && (
+              <User size={36} strokeWidth={1.5} />
+              {/* {isAuthenticated && (
                 <span className="text-xs">{customer?.name?.split(" ")[0]}</span>
-              )}
+              )} */}
             </Link>
           </div>
         </nav>

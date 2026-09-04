@@ -42,7 +42,7 @@ export default function InstagramFeed() {
   return (
     <section
       aria-labelledby="instagram-feed-heading"
-      className="bg-[#E2DED3] py-12 sm:py-21 lg:py-29"
+      className="bg-[#FFFEF6] py-12 sm:py-21 lg:py-29"
     >
       <div className="px-6 sm:px-10 md:px-16 lg:px-20">
         <SectionIntro

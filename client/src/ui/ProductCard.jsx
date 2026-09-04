@@ -39,7 +39,10 @@ export default function ProductCard({ product }) {
         </div>
       </Link>
       <div className="pt-3">
-        <h3 className="font-serif text-base text-brand-text">{product.name}</h3>
+        <h3 className="font-serif text-base text-brand-text line-clamp-2 min-h-[2.5rem] leading-snug">
+  {product.name}
+</h3>
+        
 
         {(() => {
           const hasDiscount = product.discountPrice && product.discountPrice < product.price;

@@ -2,12 +2,45 @@ import { Link, useNavigate } from "react-router-dom";
 import { Trash2, Minus, Plus } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
+
+function CartSkeleton() {
+  return (
+    <div className="max-w-4xl mx-auto px-6 py-10 mt-2">
+      <div className="h-7 w-40 bg-gray-200 rounded animate-pulse mb-8" />
+
+      <div className="space-y-6">
+        {Array.from({ length: 2 }).map((_, i) => (
+          <div key={i} className="flex gap-4 border-b border-gray-200 pb-6">
+            <div className="w-24 h-32 bg-gray-200 rounded animate-pulse" />
+            <div className="flex-1 space-y-3">
+              <div className="h-4 w-3/4 bg-gray-200 rounded animate-pulse" />
+              <div className="h-3 w-1/4 bg-gray-200 rounded animate-pulse" />
+              <div className="flex items-center gap-3 mt-3">
+                <div className="w-7 h-7 bg-gray-200 rounded animate-pulse" />
+                <div className="w-6 h-4 bg-gray-200 rounded animate-pulse" />
+                <div className="w-7 h-7 bg-gray-200 rounded animate-pulse" />
+              </div>
+            </div>
+            <div className="h-4 w-14 bg-gray-200 rounded animate-pulse" />
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 flex justify-between items-center">
+        <div className="h-5 w-16 bg-gray-200 rounded animate-pulse" />
+        <div className="h-5 w-20 bg-gray-200 rounded animate-pulse" />
+      </div>
+
+      <div className="mt-6 w-full h-12 bg-gray-200 rounded animate-pulse" />
+    </div>
+  );
+}
 export default function Cart() {
   const { cart, loading, updateQuantity, removeFromCart, totalAmount } = useCart();
   const navigate = useNavigate();
 
   if (loading) {
-    return <div className="p-8 text-center text-gray-500">Loading cart...</div>;
+    return <CartSkeleton />;
   }
 
   if (!cart.items || cart.items.length === 0) {
@@ -25,7 +58,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10">
+    <div className="max-w-4xl mx-auto px-6 py-10 mt-2">
       <h1 className="text-2xl font-serif mb-8 text-[#3F010C]">Shopping Cart</h1>
 
       <div className="space-y-6">

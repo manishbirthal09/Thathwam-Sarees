@@ -55,21 +55,15 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    
-    setSubmitted(true);
-    setEmail("");
-  };
+ 
 
   return (
-    <footer  className="p-2 bg-[#E2DED3]">
+    <footer  className="p-2 bg-[#FFFEF6]">
       <div className="bg-[#3F010C] rounded-lg">
-      <div className="mx-auto max-w-[1440px] px-6 pb-14 pt-20 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-28">
-        <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
+      <div className="mx-auto max-w-[1440px] px-6 pb-3 pt-5 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-7">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-3  items-start lg:grid-cols-12 lg:gap-10">
          
-          <div className="lg:col-span-4">
+          <div className="col-span-2 lg:col-span-4">
             <a
               href="/"
               className="font-serif text-2xl font-normal tracking-[-0.01em] text-[#E2DED3]"
@@ -77,50 +71,18 @@ export default function Footer() {
               Thathwam Sarees
             </a>
 
-            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-[#E2DED3]/65">
+            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-[#E2DED3]/65">
               Hand-loomed sarees from six weaving houses across India —
               crafted slowly, worn for a lifetime.
             </p>
 
-            <form onSubmit={handleSubscribe} className="mt-8 max-w-xs">
-              <label
-                htmlFor="footer-newsletter-email"
-                className="mb-3 block text-[11px] font-medium uppercase tracking-[0.16em] text-[#E2DED3]/50"
-              >
-                Join the Newsletter
-              </label>
-              <div className="flex items-end gap-4 border-b border-[#E2DED3]/30 pb-2 transition-colors duration-300 ease-in-out focus-within:border-[#B8AD85]">
-                <input
-                  id="footer-newsletter-email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email address"
-                  className="w-full bg-transparent text-sm text-[#E2DED3] placeholder:text-[#E2DED3]/40 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-[#B8AD85] transition-colors duration-300 ease-in-out hover:text-[#E2DED3]"
-                >
-                  Submit
-                </button>
-              </div>
-              <p
-                role="status"
-                className={`mt-3 text-xs text-[#E2DED3]/60 transition-opacity duration-300 ${
-                  submitted ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                Thank you — you&rsquo;re on the list.
-              </p>
-            </form>
+            
           </div>
 
           
-          <div className="lg:col-span-2 lg:col-start-6">
+          <div className=" col-span-1 lg:col-span-3">
             <FooterHeading>Customer Service</FooterHeading>
-            <ul className="space-y-3.5">
+            <ul className="space-y-1">
               {CUSTOMER_SERVICE_LINKS.map((link) => (
                 <li key={link.label}>
                   <FooterLink href={link.href}>{link.label}</FooterLink>
@@ -131,9 +93,9 @@ export default function Footer() {
 
           
 
-          <div className="lg:col-span-3">
+          <div className="col-span-1 lg:col-span-3">
             <FooterHeading>Contact</FooterHeading>
-            <ul className="space-y-3.5">
+            <ul className="space-y-1">
               {CONTACT_LINKS.map((link) => (
                 <li key={link.label}>
                   <FooterLink href={link.href}>{link.label}</FooterLink>
@@ -141,9 +103,9 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-        </div>
-
-                <div className="mt-16 flex items-center gap-6 sm:mt-20">
+        
+</div>
+                <div className="mt-10 flex items-center gap-5 sm:mt-20">
           {SOCIAL_LINKS.map((social) => (
             <a
               key={social.label}
@@ -161,7 +123,7 @@ export default function Footer() {
         </div>
 
        
-        <div className="mt-14 flex flex-col items-center gap-4 border-t border-[#E2DED3]/15 pt-8 sm:flex-row sm:justify-between sm:gap-0">
+        <div className="mt-5 flex flex-col items-center gap-4 border-t border-[#E2DED3]/15 pt-3 sm:flex-row sm:justify-between sm:gap-0">
           <p className="text-[11px] uppercase tracking-[0.14em] text-[#E2DED3]/45">
             &copy; {new Date().getFullYear()} Thathwam Sarees. All rights reserved.
           </p>

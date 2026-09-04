@@ -92,17 +92,16 @@ export default function FeaturedProducts() {
   return (
     <section
       aria-labelledby="featured-products-heading"
-      className="bg-[#E2DED3] px-6 py-12 sm:px-10 sm:py-21 md:px-16 lg:px-20 lg:py-29 overflow-hidden"
+      className="bg-[#FFFEF6] px-6 py-6 sm:px-10 sm:py-21 md:px-16 lg:px-20 lg:py-29 overflow-hidden"
     >
-      <div className="w-20 h-px bg-[#3F010C]/30 mx-auto mb-16" />
+      
       <SectionIntro
         id="featured-products-heading"
-        eyebrow="The Edit"
         heading="Signature Sarees"
         paragraph="Handpicked pieces crafted for timeless elegance and modern celebrations."
       />
 
-      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-5 gap-y-12 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-8 min-w-0">
+      <div className="mx-auto  grid max-w-[1440px] grid-cols-2 gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-8 min-w-0">
         {loading ? (
           Array.from({ length: 8 }).map((_, i) => <ProductCardSkeleton key={i} />)
         ) : (
@@ -123,7 +122,7 @@ export default function FeaturedProducts() {
                   </div>
                 </Link>
 
-                <div className="mt-5 px-4 pb-4">
+                <div className="mt-5 px-4 pb-4 ">
                   <Link to={`/products/${p._id}`}>
                     <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]">
                       {p.name}
@@ -149,22 +148,22 @@ export default function FeaturedProducts() {
                   </div>
                 </div>
 
+               
                 <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
-                  <button
-                    onClick={(e) => handleAddToCart(e, p._id)}
-                    className="flex-1 min-w-0 border border-[#3F010C] px-0.5 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-tighter text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
-                  >
-                    Add to Cart
-                  </button>
+  <button
+    onClick={(e) => handleAddToCart(e, p._id)}
+    className="flex-1 min-w-0 rounded-sm border border-[#3F010C] px-2 py-1.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-tight whitespace-nowrap text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+  >
+    Add to Cart
+  </button>
 
-                  <button
-                    onClick={(e) => handleBuyNow(e, p._id)}
-                    className="flex-1 min-w-0 border border-[#3F010C] bg-[#3F010C] px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-white transition-colors duration-300 hover:bg-black"
-                  >
-                    Buy Now
-                    <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover/cta:w-full" />
-                  </button>
-                </div>
+  <button
+    onClick={(e) => handleBuyNow(e, p._id)}
+    className="flex-1 min-w-0 rounded-sm border border-[#3F010C] bg-[#3F010C] px-2 py-1.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-tight whitespace-nowrap text-white transition-colors duration-300 hover:bg-black"
+  >
+    Buy Now
+  </button>
+</div>
               </Card>
             );
           })

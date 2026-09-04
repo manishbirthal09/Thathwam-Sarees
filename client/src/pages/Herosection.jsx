@@ -9,6 +9,7 @@ const SLIDES = [
     id: "slide-heritage",
     image:
       "/TB2.webp",
+       positionClass: "object-center lg:object-[center_2%]",
     eyebrow: "Heritage Edit",
     headline: "Quiet Grandeur",
     copy:
@@ -18,6 +19,7 @@ const SLIDES = [
     id: "slide-bridal",
     image:
       "/TB3.webp",
+       positionClass: "object-center lg:object-[center_1%]",
     eyebrow: "Bridal Edit",
     headline: "Made to Remember",
     copy:
@@ -27,6 +29,7 @@ const SLIDES = [
     id: "slide-bridal-2",
     image:
       "/TB4.webp",
+      positionClass: "object-center lg:object-[center_30%]",
     eyebrow: "Bridal Edit",
     headline: "Made to Remember",
     copy:
@@ -88,7 +91,7 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Featured collections"
-      className="relative aspect-[5/4] w-full  overflow-hidden bg-black py-20 mt-8 lg:aspect-auto lg:h-[calc(100vh-20px)] lg:mt-0 lg:py-0"
+      className="relative aspect-[1/1] w-full  overflow-hidden bg-black  mt-8 lg:aspect-auto lg:h-[70vh] lg:mt-0 lg:py-0"
       
       
         onMouseEnter={() => setIsPaused(true)}
@@ -98,7 +101,7 @@ export default function HeroSection() {
       onTouchEnd={handleTouchEnd}
     >
       
-      <div className="absolute inset-0">
+      <div className="absolute inset-x-0 bottom-0 top-20 lg:top-0">
         {SLIDES.map((slide, index) => (
           <div
             key={slide.id}
@@ -110,7 +113,8 @@ export default function HeroSection() {
             <img
               src={slide.image}
               alt={slide.headline}
-              className="h-full w-full   object-fill"
+              className={`h-full w-full object-cover ${slide.positionClass}`}
+        
               loading={index === 0 ? "eager" : "lazy"}
               fetchpriority={index === 0 ? "high" : "auto"}
             />

@@ -55,7 +55,7 @@ export default function USPSlider() {
   }, []);
 
   return (
-    <section className="bg-[#E2DED3] py-20 overflow-hidden">
+    <section className="bg-[#FFFEF6] py-20 overflow-hidden">
         <div className="w-20 h-px bg-[#3F010C]/30 mx-auto mb-16" />
       <div className="max-w-sm mx-auto px-6 text-center">
         {usps.map((usp, i) => (

@@ -52,23 +52,7 @@ const DEFAULT_FILTERS = {
         <h1 className="text-3xl mb-6 text-brand-text">Our Collections</h1>
 
       </div>
-      {/* <div className="relative max-w-md mb-8">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-        <input
-          type="text"
-          placeholder="Search sarees..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2 border border-brand-border rounded-md text-sm focus:outline-none focus:border-brand-primary"
-        />
-      </div> */}
-{/* <button
-  type="button"
-  onClick={() => setFilters(DEFAULT_FILTERS)}
-  className="text-xs font-medium uppercase tracking-wide text-[#3F010C] underline underline-offset-2 hover:text-black"
->
-  Clear Filters
-</button> */}
+     
       <div className="flex flex-col md:flex-row gap-8">
         <FilterSidebar filters={filters} setFilters={setFilters} defaultFilters={DEFAULT_FILTERS} />
 

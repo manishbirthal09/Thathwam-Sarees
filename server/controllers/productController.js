@@ -1,5 +1,4 @@
-import Product  from "../models/Product.js";
-
+import Product from "../models/Product.js";
 
 export const getProducts = async (req, res) => {
   try {
@@ -8,12 +7,12 @@ export const getProducts = async (req, res) => {
 
     if (category) query.category = { $in: category.split(",") };
     if (fabric) query.fabric = { $in: fabric.split(",") };
-    if (color) query.color = { $in: color.split(",") };
+    if (color) query.colors = { $in: color.split(",") };
     if (maxPrice) query.price = { $lte: Number(maxPrice) };
     if (search) query.name = { $regex: search, $options: "i" };
 
     const products = await Product.find(query)
-    .populate("category", "name slug")
+      .populate("category", "name slug")
       .skip((page - 1) * limit)
       .limit(Number(limit))
       .sort({ createdAt: -1 });
@@ -26,11 +25,9 @@ export const getProducts = async (req, res) => {
   }
 };
 
-
 export const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id)
-    .populate("category", "name slug");
+    const product = await Product.findById(req.params.id).populate("category", "name slug");
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
   } catch (err) {
@@ -38,10 +35,19 @@ export const getProductById = async (req, res) => {
   }
 };
 
-
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, discountPrice, category, fabric, color, description, stock } = req.body;
+    const { name, price, discountPrice, category, fabric, description, stock } = req.body;
+
+    let colors = [];
+    if (req.body.colors) {
+      try {
+        colors = JSON.parse(req.body.colors);
+      } catch {
+        colors = [req.body.colors];
+      }
+    }
+
     const images = req.files ? req.files.map((file) => file.path) : [];
 
     const product = await Product.create({
@@ -50,7 +56,7 @@ export const createProduct = async (req, res) => {
       discountPrice,
       category,
       fabric,
-      color,
+      colors,          
       description,
       stock,
       images,
@@ -64,17 +70,28 @@ export const createProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   try {
-    const updates = req.body;
+    console.log("req.body:", req.body);        
+    console.log("req.body.colors:", req.body.colors);
+    const updates = { ...req.body };
+
+    if (req.body.colors) {
+      try {
+        updates.colors = JSON.parse(req.body.colors);
+      } catch {
+        updates.colors = [req.body.colors];
+      }
+    }
+  console.log("Final updates.colors:", updates.colors);
     if (req.files && req.files.length > 0) {
       updates.images = req.files.map((file) => file.path);
     }
+
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(product);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
-
 
 export const deleteProduct = async (req, res) => {
   try {

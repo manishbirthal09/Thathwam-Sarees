@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { COLOR_OPTIONS } from "../constants/colors";
 
 export default function ProductForm({ product, onClose, onSaved }) {
   const [categories, setCategories] = useState([]);
@@ -7,11 +8,11 @@ export default function ProductForm({ product, onClose, onSaved }) {
     name: product?.name || "",
     description: product?.description || "",
     price: product?.price || "",
-     discountPrice: product?.discountPrice || "",
+    discountPrice: product?.discountPrice || "",
     stock: product?.stock || "",
     category: product?.category?._id || "",
-    
   });
+  const [selectedColors, setSelectedColors] = useState(product?.colors || []);
   const [images, setImages] = useState([]);
   const [saving, setSaving] = useState(false);
 
@@ -22,11 +23,20 @@ export default function ProductForm({ product, onClose, onSaved }) {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
+  const toggleColor = (colorName) => {
+    setSelectedColors((prev) =>
+      prev.includes(colorName)
+        ? prev.filter((c) => c !== colorName)
+        : [...prev, colorName]
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => formData.append(key, value));
+    formData.append("colors", JSON.stringify(selectedColors));
     images.forEach((img) => formData.append("images", img));
 
     try {
@@ -45,10 +55,10 @@ export default function ProductForm({ product, onClose, onSaved }) {
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-start md:items-center justify-center z-50 overflow-y-auto p-4">
-    <form
+      <form
         onSubmit={handleSubmit}
         className="bg-white rounded-lg w-full max-w-2xl p-4 md:p-6 space-y-4 my-6"
-        >
+      >
         <h2 className="text-lg font-semibold">
           {product ? "Edit Product" : "Add Product"}
         </h2>
@@ -74,7 +84,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
           />
         </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm text-gray-600">Price</label>
             <input
@@ -86,14 +96,13 @@ export default function ProductForm({ product, onClose, onSaved }) {
               className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
             />
           </div>
-           <div>
+          <div>
             <label className="text-sm text-gray-600">Discount Price (optional)</label>
             <input
               name="discountPrice"
               type="number"
               value={form.discountPrice}
               onChange={handleChange}
-              required
               className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
             />
           </div>
@@ -128,7 +137,29 @@ export default function ProductForm({ product, onClose, onSaved }) {
           </select>
         </div>
 
-        
+        <div>
+          <label className="text-sm text-gray-600 mb-2 block">Colors</label>
+          <div className="border rounded-md p-3 max-h-48 overflow-y-auto grid grid-cols-2 gap-2">
+            {COLOR_OPTIONS.map((c) => (
+              <label
+                key={c.name}
+                className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedColors.includes(c.name)}
+                  onChange={() => toggleColor(c.name)}
+                  className="accent-brand-primary"
+                />
+                <span
+                  className="w-4 h-4 rounded-sm border border-gray-300 shrink-0"
+                  style={{ backgroundColor: c.hex || "#fff" }}
+                />
+                {c.name}
+              </label>
+            ))}
+          </div>
+        </div>
 
         <div>
           <label className="text-sm text-gray-600">Images</label>
@@ -149,7 +180,7 @@ export default function ProductForm({ product, onClose, onSaved }) {
             type="submit"
             disabled={saving}
             className="bg-gray-900 text-white px-4 py-2 rounded-md text-sm disabled:opacity-50 w-full sm:w-auto"
-           >
+          >
             {saving ? "Saving..." : "Save"}
           </button>
         </div>

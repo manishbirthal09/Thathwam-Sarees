@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import api from "../api/axios";
 import { ChevronDown } from "lucide-react";
+import { COLOR_OPTIONS } from "../constants/colors";
 
 
-
-function MultiSelectDropdown({ label, options, selected, onToggle }) {
+function MultiSelectDropdown({ label, options, selected, onToggle, showSwatch }) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -39,21 +39,32 @@ function MultiSelectDropdown({ label, options, selected, onToggle }) {
       </button>
 
       {isOpen && (
-        <div className=" mt-1 z-20 max-h-56 overflow-y-auto border border-gray-200 bg-white rounded-md shadow-lg py-2">
-          {options.map((opt) => (
-            <label
-              key={opt}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-50"
-            >
-              <input
-                type="checkbox"
-                checked={selected.includes(opt)}
-                onChange={() => onToggle(opt)}
-                className="accent-brand-primary"
-              />
-              {opt}
-            </label>
-          ))}
+        <div className="mt-1 z-20 max-h-56 overflow-y-auto border border-gray-200 bg-white rounded-md shadow-lg py-2">
+          {options.map((opt) => {
+            const optName = typeof opt === "string" ? opt : opt.name;
+            const optHex = typeof opt === "string" ? null : opt.hex;
+
+            return (
+              <label
+                key={optName}
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-50"
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(optName)}
+                  onChange={() => onToggle(optName)}
+                  className="accent-brand-primary"
+                />
+                {showSwatch && (
+                  <span
+                    className="w-4 h-4 rounded-sm border border-gray-300 shrink-0"
+                    style={{ backgroundColor: optHex || "#fff" }}
+                  />
+                )}
+                {optName}
+              </label>
+            );
+          })}
         </div>
       )}
     </div>
@@ -76,24 +87,7 @@ export default function FilterSidebar({ filters, setFilters, defaultFilters }) {
     });
   };
 
-  // const FilterGroup = ({ title, type, options }) => (
-  //   <div className="mb-6">
-  //     <h4 className="font-medium text-sm text-brand-text mb-3">{title}</h4>
-  //     <div className="space-y-2">
-  //       {options.map((opt) => (
-  //         <label key={opt} className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-  //           <input
-  //             type="checkbox"
-  //             checked={filters[type].includes(opt)}
-  //             onChange={() => toggleFilter(type, opt)}
-  //             className="accent-brand-primary"
-  //           />
-  //           {opt}
-  //         </label>
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
+  
 
   return (
     <aside className="w-full md:w-56 shrink-0">
@@ -103,7 +97,7 @@ export default function FilterSidebar({ filters, setFilters, defaultFilters }) {
         selected={filters.categories}
         onToggle={(value) => toggleFilter("categories", value)}
       />
-      {/* <FilterGroup title="Category" type="categories" options={categories.map((c) => c.name)} /> */}
+      
 
       <div className="mb-6">
         <h4 className="font-medium text-sm text-brand-text mb-3">Price Range</h4>
@@ -118,7 +112,13 @@ export default function FilterSidebar({ filters, setFilters, defaultFilters }) {
         />
         <p className="text-xs text-gray-500 mt-1">Up to ₹{filters.maxPrice.toLocaleString("en-IN")}</p>
       </div>
-
+<MultiSelectDropdown
+        label="Color"
+        options={COLOR_OPTIONS}
+        selected={filters.colors}
+        onToggle={(value) => toggleFilter("colors", value)}
+        showSwatch
+      />
       <button
         type="button"
         onClick={() => setFilters(defaultFilters)}

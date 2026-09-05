@@ -40,7 +40,7 @@ const DEFAULT_FILTERS = {
       const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
       const matchesCategory = filters.categories.length === 0 || filters.categories.includes(p.category?.name);
       
-      const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
+      const matchesColor = filters.colors.length === 0 || filters.colors.some((c) => p.colors?.includes(c));
       const matchesPrice = filters.maxPrice === 0 || p.discountPrice <= filters.maxPrice;
       return matchesSearch && matchesCategory && matchesColor && matchesPrice;
     });
@@ -52,7 +52,11 @@ const DEFAULT_FILTERS = {
         <h1 className="text-3xl mb-6 text-brand-text">Our Collections</h1>
 
       </div>
-     
+      <p className="text-sm text-gray-500 mb-6">
+      {loading
+        ? "Loading..."
+        : `${filteredProducts.length} ${filteredProducts.length === 1 ? "product" : "products"} found`}
+    </p>
       <div className="flex flex-col md:flex-row gap-8">
         <FilterSidebar filters={filters} setFilters={setFilters} defaultFilters={DEFAULT_FILTERS} />
 

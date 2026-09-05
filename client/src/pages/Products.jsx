@@ -16,13 +16,18 @@ export default function Products() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search);
 
+
+  
   const [filters, setFilters] = useState({
     categories: [],
-    fabrics: [],
     colors: [],
-    maxPrice: 10000,
+    maxPrice: 0,
   });
-
+const DEFAULT_FILTERS = {
+  categories: [],
+  colors: [],
+  maxPrice: 0,
+};
   useEffect(() => {
     api.get("/products", { params: { limit: 100 } }).then(({ data }) => {
       setProducts(data.products);
@@ -33,12 +38,11 @@ export default function Products() {
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const matchesSearch = p.name.toLowerCase().includes(debouncedSearch.toLowerCase());
-      const matchesCategory =
-        filters.categories.length === 0 || filters.categories.includes(p.category?.name);
-      const matchesFabric = filters.fabrics.length === 0 || filters.fabrics.includes(p.fabric);
+      const matchesCategory = filters.categories.length === 0 || filters.categories.includes(p.category?.name);
+      
       const matchesColor = filters.colors.length === 0 || filters.colors.includes(p.color);
-      const matchesPrice = p.price <= filters.maxPrice;
-      return matchesSearch && matchesCategory && matchesFabric && matchesColor && matchesPrice;
+      const matchesPrice = filters.maxPrice === 0 || p.discountPrice <= filters.maxPrice;
+      return matchesSearch && matchesCategory && matchesColor && matchesPrice;
     });
   }, [debouncedSearch, filters, products]);
 
@@ -48,7 +52,7 @@ export default function Products() {
         <h1 className="text-3xl mb-6 text-brand-text">Our Collections</h1>
 
       </div>
-      <div className="relative max-w-md mb-8">
+      {/* <div className="relative max-w-md mb-8">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
         <input
           type="text"
@@ -57,10 +61,16 @@ export default function Products() {
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-9 pr-4 py-2 border border-brand-border rounded-md text-sm focus:outline-none focus:border-brand-primary"
         />
-      </div>
-
+      </div> */}
+{/* <button
+  type="button"
+  onClick={() => setFilters(DEFAULT_FILTERS)}
+  className="text-xs font-medium uppercase tracking-wide text-[#3F010C] underline underline-offset-2 hover:text-black"
+>
+  Clear Filters
+</button> */}
       <div className="flex flex-col md:flex-row gap-8">
-        <FilterSidebar filters={filters} setFilters={setFilters} />
+        <FilterSidebar filters={filters} setFilters={setFilters} defaultFilters={DEFAULT_FILTERS} />
 
         <div className="flex-1">
           {loading ? (
@@ -80,6 +90,7 @@ export default function Products() {
           )}
         </div>
       </div>
+      
     </div>
   );
 }

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
-
-
-export default function FilterSidebar({ filters, setFilters }) {
+export default function FilterSidebar({ filters, setFilters, defaultFilters }) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -42,7 +40,7 @@ export default function FilterSidebar({ filters, setFilters }) {
   return (
     <aside className="w-full md:w-56 shrink-0">
       <FilterGroup title="Category" type="categories" options={categories.map((c) => c.name)} />
-      
+
       <div className="mb-6">
         <h4 className="font-medium text-sm text-brand-text mb-3">Price Range</h4>
         <input
@@ -56,6 +54,14 @@ export default function FilterSidebar({ filters, setFilters }) {
         />
         <p className="text-xs text-gray-500 mt-1">Up to ₹{filters.maxPrice.toLocaleString("en-IN")}</p>
       </div>
+
+      <button
+        type="button"
+        onClick={() => setFilters(defaultFilters)}
+        className="w-full border border-[#3F010C] py-2 text-xs font-medium uppercase tracking-wide text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+      >
+        Clear Filters
+      </button>
     </aside>
   );
 }

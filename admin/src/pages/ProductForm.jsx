@@ -168,8 +168,8 @@ export default function ProductForm({ product, onClose, onSaved }) {
             accept="image/*"
             multiple
             onChange={(e) => setImages(Array.from(e.target.files))}
-            className="w-full text-sm mt-1"
-          />
+            className="w-full text-sm mt-1 file:border file:border-black/55  file:rounded-md file:px-1 file:py-0.5 file:bg-white file:text-sm file:mr-3 file:cursor-pointer"
+/>
         </div>
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">

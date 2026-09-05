@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-
+import { Link } from "react-router-dom";
 
 
 
@@ -110,6 +110,7 @@ export default function HeroSection() {
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >
+            <Link to="/products">
             <img
               src={slide.image}
               alt={slide.headline}
@@ -118,9 +119,11 @@ export default function HeroSection() {
               loading={index === 0 ? "eager" : "lazy"}
               fetchpriority={index === 0 ? "high" : "auto"}
             />
-           
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-          </div>
+           </Link>
+           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />*/}
+          </div> 
         ))}
       </div>
 

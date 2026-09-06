@@ -18,7 +18,11 @@ export default function Checkout() {
   });
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
-
+const [settings, setSettings] = useState({ deliveryCharge: 99, bogoEnabled: true });
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscountPercent, setCouponDiscountPercent] = useState(0);
+  const [couponError, setCouponError] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
   
   useEffect(() => {
   if (!isAuthenticated) {
@@ -123,6 +127,22 @@ if (!isAuthenticated) {
 };
 
 
+useEffect(() => {
+    api.get("/settings").then(({ data }) => setSettings(data));
+  }, []);
+
+  const handleApplyCoupon = async () => {
+    setCouponError("");
+    try {
+      const { data } = await api.post("/coupons/validate", { code: couponCode });
+      setCouponDiscountPercent(data.discountPercent);
+      setCouponApplied(true);
+    } catch (err) {
+      setCouponError(err.response?.data?.message || "Invalid coupon");
+      setCouponDiscountPercent(0);
+      setCouponApplied(false);
+    }
+  };
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-10">
@@ -197,7 +217,32 @@ if (!isAuthenticated) {
             />
           </div>
         </div>
-
+<div className="mt-4">
+  <div className="flex gap-2">
+    <input
+      type="text"
+      value={couponCode}
+      onChange={(e) => setCouponCode(e.target.value)}
+      placeholder="Have a coupon? Enter code"
+      className="flex-1 border rounded-md px-3 py-2 text-sm"
+      disabled={couponApplied}
+    />
+    <button
+      type="button"
+      onClick={handleApplyCoupon}
+      disabled={couponApplied}
+      className="bg-[#3F010C] text-white px-4 py-2 rounded-md text-sm disabled:opacity-50"
+    >
+      {couponApplied ? "Applied" : "Apply"}
+    </button>
+  </div>
+  {couponError && <p className="text-xs text-red-600 mt-1">{couponError}</p>}
+  {couponApplied && (
+    <p className="text-xs text-green-700 mt-1">
+      {couponDiscountPercent}% discount applied!
+    </p>
+  )}
+</div>
 
 <div className="mb-2">
   <h3 className="text-sm font-medium text-[#3F010C] mb-3">Payment Method</h3>

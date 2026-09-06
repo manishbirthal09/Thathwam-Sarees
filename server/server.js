@@ -12,6 +12,8 @@ import productRoutes from "./routes/productRoutes.js";
 import customerAuthRoutes from "./routes/customerAuthRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import settingsRoutes from "./routes/settingsRoutes.js";
+import couponRoutes from "./routes/couponRoutes.js";
 
 const app = express();
 app.use(cors({
@@ -35,6 +37,8 @@ app.use("/api/customer/auth", customerAuthRoutes);
 
 app.use("/api/categories", categoryRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/settings", settingsRoutes);
+app.use("/api/coupons", couponRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

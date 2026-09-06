@@ -4,6 +4,8 @@ import {
   Package,
   Tag,
   ShoppingBag,
+  Settings,
+  Percent,
   LogOut,
   X,
 } from "lucide-react";
@@ -14,6 +16,8 @@ const links = [
   { to: "/products", label: "Products", icon: Package },
   { to: "/categories", label: "Categories", icon: Tag },
   { to: "/orders", label: "Orders", icon: ShoppingBag },
+  { to: "/coupons", label: "Coupons", icon: Percent },
+  { to: "/settings", label: "Settings", icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {
@@ -46,7 +50,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition ${
                 isActive
-                  ? "bg-[#3F010C] text-white"
+                  ? "bg-white/10 text-white"
                   : "hover:bg-[#3F010C]/10"
               }`
             }
@@ -67,5 +71,3 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     </aside>
   );
 }
-
-

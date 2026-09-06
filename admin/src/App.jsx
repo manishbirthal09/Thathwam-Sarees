@@ -50,6 +50,22 @@ export default function App() {
     </ProtectedRoute>
   }
 />
+<Route
+            path="/coupons"
+            element={
+              <ProtectedRoute>
+                <AdminCoupons />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

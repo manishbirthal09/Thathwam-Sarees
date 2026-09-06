@@ -7,6 +7,8 @@ import Categories from "./pages/Categories";
 import AdminLayout from "./components/AdminLayout";
 import Orders from "./pages/Orders";
 import Dashboard from "./pages/Dashboard";
+import AdminCoupons from "./pages/AdminCoupons";
+import Settings from "./pages/AdminSettings";
 
 
 export default function App() {

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import api from "../api/axios";
+import AdminLayout from "../components/AdminLayout";
 
 export default function AdminCoupons() {
   const [coupons, setCoupons] = useState([]);
@@ -32,6 +33,7 @@ export default function AdminCoupons() {
   };
 
   return (
+    <AdminLayout>
     <div className="max-w-2xl p-6">
       <h2 className="text-lg font-semibold mb-4">Coupons</h2>
 
@@ -97,5 +99,6 @@ export default function AdminCoupons() {
         </tbody>
       </table>
     </div>
+    </AdminLayout>
   );
 }

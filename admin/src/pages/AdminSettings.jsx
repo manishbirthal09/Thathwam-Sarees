@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import api from "../api/axios";
+import AdminLayout from "../components/AdminLayout";
 
 export default function AdminSettings() {
   const [deliveryCharge, setDeliveryCharge] = useState(99);
@@ -19,6 +20,7 @@ export default function AdminSettings() {
   };
 
   return (
+    <AdminLayout>
     <div className="max-w-md p-6">
       <h2 className="text-lg font-semibold mb-4">Store Settings</h2>
 
@@ -51,5 +53,6 @@ export default function AdminSettings() {
         Save Settings
       </button>
     </div>
+    </AdminLayout>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useCustomerAuth } from "../context/CustomerAuthContext";
 import api from "../api/axios";
-import { calculateOrderTotal } from "../utils/orderUtils";
+import { calculateOrderTotal } from "../utils/calculateOrderTotal";
 
 export default function Checkout() {
   const { cart, totalAmount, cartId } = useCart();

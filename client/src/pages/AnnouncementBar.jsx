@@ -47,7 +47,7 @@ export default function AnnouncementBar() {
         {MESSAGES.map((message, index) => (
           <p
             key={message}
-            className={`absolute inset-0 text-[15px] font-medium uppercase tracking-label text-ivory transition-opacity duration-500 ease-in-out ${
+            className={`absolute inset-0 text-[15px] font-medium uppercase tracking-label text-black transition-opacity duration-500 ease-in-out ${
               index === activeIndex ? "opacity-100" : "opacity-0"
             }`}
           >

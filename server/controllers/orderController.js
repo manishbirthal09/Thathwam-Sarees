@@ -10,28 +10,29 @@ import { calculateBogoDiscount } from "../utils/calculateBogo.js";
 
 export const createOrder = async (req, res) => {
   try {
-    const { items, customer, paymentMethod, couponCode } = req.body;
+    const { items, customer, paymentMethod, couponCode, guestEmail } = req.body;
 
-       const populatedItems = await Promise.all(
+    
+    const populatedItems = await Promise.all(
       items.map(async (item) => {
         const product = await Product.findById(item.product);
         if (!product) throw new Error(`Product not found: ${item.product}`);
+        if (product.stock < item.quantity) {
+          throw new Error(`${product.name} is out of stock (only ${product.stock} left)`);
+        }
         return { product, quantity: item.quantity };
       })
     );
 
-    
     const subtotal = populatedItems.reduce((sum, item) => {
       const price = item.product.discountPrice || item.product.price;
       return sum + price * item.quantity;
     }, 0);
 
-    
-    const settings = (await Settings.findOne()) || { deliveryCharge: 99, bogoEnabled: true };
+    const settings = (await Settings.findOne()) || { deliveryCharge: 99, bogoEnabled: false };
     const bogoDiscount = calculateBogoDiscount(populatedItems, settings.bogoEnabled);
     const afterBogo = subtotal - bogoDiscount;
 
-    
     let couponDiscountPercent = 0;
     if (couponCode) {
       const coupon = await Coupon.findOne({ code: couponCode.toUpperCase(), active: true });
@@ -39,13 +40,12 @@ export const createOrder = async (req, res) => {
     }
     const couponDiscount = (afterBogo * couponDiscountPercent) / 100;
 
-    
     const deliveryCharge = settings.deliveryCharge;
     const totalAmount = Math.round(afterBogo - couponDiscount + deliveryCharge);
 
-    
     const order = await Order.create({
-      customerRef: req.customer.id,
+      customerRef: req.customer?.id || null,
+      guestEmail: !req.customer ? guestEmail : undefined,
       items: populatedItems.map((item) => ({
         product: item.product._id,
         name: item.product.name,
@@ -62,12 +62,18 @@ export const createOrder = async (req, res) => {
       paymentMethod,
     });
 
+    
+    for (const item of populatedItems) {
+      await Product.findByIdAndUpdate(item.product._id, { $inc: { stock: -item.quantity } });
+    }
+
     res.status(201).json(order);
     sendOrderNotification(order);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 export const getOrders = async (req, res) => {
   try {

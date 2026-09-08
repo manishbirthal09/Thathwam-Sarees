@@ -9,8 +9,9 @@ const orderItemSchema = new mongoose.Schema({
 
 const orderSchema = new mongoose.Schema(
   {
-    customerRef: { type: mongoose.Schema.Types.ObjectId, ref: "Customer", required: true },
+    customerRef: { type: mongoose.Schema.Types.ObjectId, ref: "Customer" },
     items: [orderItemSchema],
+    guestEmail: { type: String, trim: true, lowercase: true },
     subtotal: { type: Number, required: true },
     bogoDiscount: { type: Number, default: 0 },
     couponDiscount: { type: Number, default: 0 },

@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import Customer from "../models/Customer.js";
+import Order from "../models/Order.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id, type: "customer" }, process.env.JWT_SECRET, {
@@ -22,6 +23,10 @@ export const registerCustomer = async (req, res) => {
     }
 
     const customer = await Customer.create({ name, email, password, phone });
+    await Order.updateMany(
+  { guestEmail: email, customerRef: null },
+  { $set: { customerRef: customer._id }, $unset: { guestEmail: 1 } }
+);
     const token = generateToken(customer._id);
 
     res.status(201).json({
@@ -47,7 +52,10 @@ export const loginCustomer = async (req, res) => {
     if (!customer || !(await customer.matchPassword(password))) {
       return res.status(401).json({ success: false, message: "Invalid email or password" });
     }
-
+await Order.updateMany(
+  { guestEmail: email, customerRef: null },
+  { $set: { customerRef: customer._id }, $unset: { guestEmail: 1 } }
+);
     const token = generateToken(customer._id);
 
     res.status(200).json({

@@ -17,6 +17,7 @@ export default function Checkout() {
     city: "",
     pincode: "",
   });
+  const [guestEmail, setGuestEmail] = useState(customer?.email || "");
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
 const [settings, setSettings] = useState({ deliveryCharge: 99, bogoEnabled: true });
@@ -30,14 +31,7 @@ const [settings, setSettings] = useState({ deliveryCharge: 99, bogoEnabled: true
   couponDiscountPercent: couponApplied ? couponDiscountPercent : 0,
 });
   
-  useEffect(() => {
-  if (!isAuthenticated) {
-    navigate("/login", { state: { from: "/checkout" }, replace: true });}
-     }, [isAuthenticated, navigate]);
-
-if (!isAuthenticated) {
-  return null;
-}
+  
 
 
   if (!cart.items || cart.items.length === 0) {
@@ -69,6 +63,7 @@ if (!isAuthenticated) {
       totalAmount: orderTotals.total,
       customer: address,
       paymentMethod,
+       guestEmail: !isAuthenticated ? guestEmail : undefined,
     });
 
     if (paymentMethod === "razorpay") {
@@ -216,6 +211,21 @@ useEffect(() => {
             className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
           />
         </div>
+        {!isAuthenticated && (
+  <div>
+    <label className="text-sm text-gray-600">Email (for order tracking)</label>
+    <input
+      type="email"
+      value={guestEmail}
+      onChange={(e) => setGuestEmail(e.target.value)}
+      required
+      className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
+    />
+    <p className="text-xs text-gray-500 mt-1">
+      Create an account later with this email to track your orders.
+    </p>
+  </div>
+)}
         <div>
           <label className="text-sm text-gray-600">Address</label>
           <textarea

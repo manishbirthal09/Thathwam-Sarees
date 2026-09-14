@@ -63,7 +63,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1440px] px-6 pb-3 pt-5 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-7">
   <div className="grid grid-cols-1 gap-x-6 gap-y-8 items-start text-center sm:grid-cols-3 lg:gap-10">
          
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center col-span-1 sm:col-span-1">
             <a
               href="/"
               className="font-serif text-2xl font-normal tracking-[-0.01em] text-[#E2DED3]"
@@ -79,7 +79,7 @@ export default function Footer() {
             
           </div>
 
-          
+           <div className="col-span-1 grid grid-cols-2 gap-x-4 sm:contents">
           <div className="flex flex-col items-center">
             <FooterHeading>Customer Service</FooterHeading>
             <ul className="space-y-1">
@@ -104,6 +104,7 @@ export default function Footer() {
             </ul>
           </div>
         
+</div>
 </div>
                 <div className="mt-10 flex items-center gap-5 sm:mt-20">
           {SOCIAL_LINKS.map((social) => (

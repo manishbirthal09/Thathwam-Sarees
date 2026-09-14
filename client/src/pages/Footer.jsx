@@ -61,9 +61,9 @@ export default function Footer() {
     <footer  className="p-2 bg-[#FFFEF6]">
       <div className="bg-[#3F010C] rounded-lg">
       <div className="mx-auto max-w-[1440px] px-6 pb-3 pt-5 sm:px-10 sm:pt-24 md:px-16 lg:px-20 lg:pt-7">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-3  items-start lg:grid-cols-12 lg:gap-10">
+  <div className="grid grid-cols-1 gap-x-6 gap-y-8 items-start text-center sm:grid-cols-3 lg:gap-10">
          
-          <div className="col-span-2 lg:col-span-4">
+          <div className="flex flex-col items-center">
             <a
               href="/"
               className="font-serif text-2xl font-normal tracking-[-0.01em] text-[#E2DED3]"
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           
-          <div className=" col-span-1 lg:col-span-3">
+          <div className="flex flex-col items-center">
             <FooterHeading>Customer Service</FooterHeading>
             <ul className="space-y-1">
               {CUSTOMER_SERVICE_LINKS.map((link) => (
@@ -93,7 +93,7 @@ export default function Footer() {
 
           
 
-          <div className="col-span-1 lg:col-span-3">
+      <div className="flex flex-col items-center">
             <FooterHeading>Contact</FooterHeading>
             <ul className="space-y-1">
               {CONTACT_LINKS.map((link) => (

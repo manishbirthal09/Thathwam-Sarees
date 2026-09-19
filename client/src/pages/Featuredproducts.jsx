@@ -149,7 +149,7 @@ export default function FeaturedProducts() {
                 </div>
 
                
-                <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
+                {/* <div className="mt-1 px-4 pb-4 flex items-center gap-x-2 min-w-0">
   <button
     onClick={(e) => handleAddToCart(e, p._id)}
     className="flex-1 min-w-0 rounded-sm border border-[#3F010C] px-2 py-1.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-tight whitespace-nowrap text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
@@ -160,6 +160,21 @@ export default function FeaturedProducts() {
   <button
     onClick={(e) => handleBuyNow(e, p._id)}
     className="flex-1 min-w-0 rounded-sm border border-[#3F010C] bg-[#3F010C] px-2 py-1.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-tight whitespace-nowrap text-white transition-colors duration-300 hover:bg-black"
+  >
+    Buy Now
+  </button>
+</div> */}
+<div className="mt-3 px-4 pb-4 flex items-center gap-x-3 min-w-0">
+  <button
+    onClick={(e) => handleAddToCart(e, p._id)}
+    className="flex-1 min-w-0 rounded-sm border border-[#3F010C] px-3 py-2 text-[10px] sm:text-xs font-medium uppercase tracking-tight whitespace-nowrap text-[#3F010C] transition-colors duration-300 hover:bg-[#3F010C] hover:text-white"
+  >
+    Add to Cart
+  </button>
+
+  <button
+    onClick={(e) => handleBuyNow(e, p._id)}
+    className="flex-1 min-w-0 rounded-sm border border-[#3F010C] bg-[#3F010C] px-3 py-2 text-[10px] sm:text-xs font-medium uppercase tracking-tight whitespace-nowrap text-white transition-colors duration-300 hover:bg-black"
   >
     Buy Now
   </button>

@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="group">
+    <div className="group h-full flex flex-col">
       <Link to={`/products/${product._id}`}>
         <div className="aspect-[4/5.5] overflow-hidden bg-brand-border relative">
           {!imageLoaded && (
@@ -38,11 +38,10 @@ export default function ProductCard({ product }) {
           />
         </div>
       </Link>
-      <div className="pt-3">
+      <div className="pt-3 flex flex-col flex-1">
         <h3 className="font-serif text-base text-brand-text line-clamp-2 min-h-[2.5rem] leading-snug">
-  {product.name}
-</h3>
-        
+          {product.name}
+        </h3>
 
         {(() => {
           const hasDiscount = product.discountPrice && product.discountPrice < product.price;
@@ -52,7 +51,7 @@ export default function ProductCard({ product }) {
             : 0;
 
           return (
-            <div className="mt-1 flex items-center gap-2 flex-wrap">
+            <div className="mt-1 flex items-center gap-2 flex-wrap min-h-[1.5rem]">
               {hasDiscount && (
                 <span className="text-xs text-gray-400 line-through">
                   ₹{product.price.toLocaleString("en-IN")}
@@ -70,8 +69,8 @@ export default function ProductCard({ product }) {
           );
         })()}
 
-        <div className="flex gap-2 mt-3 min-w-0">
-          <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs border border-[#3F010C] text-black" onClick={handleAddToCart}>
+        <div className="flex gap-2 mt-auto pt-3 min-w-0">
+          <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs border border-[#3F010C] text-[#3F010C]" onClick={handleAddToCart}>
             Add to Cart
           </Button>
           <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs bg-[#3F010C] text-white" onClick={handleBuyNow}>

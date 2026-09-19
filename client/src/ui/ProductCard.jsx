@@ -70,7 +70,7 @@ export default function ProductCard({ product }) {
         })()}
 
         <div className="flex gap-2 mt-auto pt-3 min-w-0">
-          <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs border border-[#3F010C] text-[#3F010C]" onClick={handleAddToCart}>
+          <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs border border-[#3F010C] !text-[#3F010C]" onClick={handleAddToCart}>
             Add to Cart
           </Button>
           <Button className="flex-1 min-w-0 whitespace-nowrap !px-2 !py-0.5 !text-[10px] sm:!text-xs bg-[#3F010C] text-white" onClick={handleBuyNow}>

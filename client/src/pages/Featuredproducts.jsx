@@ -101,7 +101,7 @@ export default function FeaturedProducts() {
         paragraph="Handpicked pieces crafted for timeless elegance and modern celebrations."
       />
 
-      <div className="mx-auto  grid max-w-[1440px] grid-cols-2 gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-8 min-w-0">
+      <div className="mx-auto  grid max-w-[1440px] grid-cols-2 gap-x-5 gap-y-6 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-8 min-w-0 items-stretch">
         {loading ? (
           Array.from({ length: 8 }).map((_, i) => <ProductCardSkeleton key={i} />)
         ) : (
@@ -114,7 +114,7 @@ export default function FeaturedProducts() {
             const imageUrl = p.images?.[0]?.url || p.images?.[0];
 
             return (
-              <Card key={p._id} className="group cursor-pointer">
+              <Card key={p._id} className="group cursor-pointer h-full flex flex-col">
                 <Link to={`/products/${p._id}`}>
                   <div className="relative">
                     <ProductImage src={imageUrl} alt={p.name} />
@@ -122,7 +122,7 @@ export default function FeaturedProducts() {
                   </div>
                 </Link>
 
-                <div className="mt-5 px-4 pb-4 ">
+                <div className="mt-5 px-4 pb-4 flex-1 flex flex-col">
                   <Link to={`/products/${p._id}`}>
                     <h3 className="font-serif text-lg font-normal leading-snug tracking-[-0.01em] text-black sm:text-xl line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]">
                       {p.name}
@@ -131,7 +131,7 @@ export default function FeaturedProducts() {
 
                  
 
-                  <div className="mt-1.5 flex items-center gap-2 flex-wrap">
+                  <div className="mt-1.5 flex items-center gap-2 flex-wrap min-h-[1.5rem]">
                     {hasDiscount && (
                       <span className="text-xs text-black/40 line-through">
                         ₹{p.price.toLocaleString("en-IN")}

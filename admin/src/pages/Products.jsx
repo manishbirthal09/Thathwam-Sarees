@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import AdminLayout from "../components/AdminLayout";
 import ProductForm from "./ProductForm";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [deleteTargetId, setDeleteTargetId] = useState(null);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -20,12 +22,21 @@ export default function Products() {
     fetchProducts();
   }, []);
 
-  const handleDelete = async (id) => {
-    if (!confirm("Delete this product?")) return;
-    await api.delete(`/products/${id}`);
-    fetchProducts();
+  // const handleDelete = async (id) => {
+  //   if (!confirm("Delete this product?")) return;
+  //   await api.delete(`/products/${id}`);
+  //   fetchProducts();
+  // };
+ const handleDeleteClick = (id) => {
+    setDeleteTargetId(id);
   };
 
+ l
+  const handleConfirmDelete = async (code) => {
+    await api.delete(`/products/${deleteTargetId}`, { data: { code } });
+    setDeleteTargetId(null);
+    fetchProducts();
+  };
   return (
     <AdminLayout>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -86,7 +97,7 @@ export default function Products() {
                   >
                     Edit
                   </button>
-                  <button onClick={() => handleDelete(p._id)} className="text-red-600">
+                  <button onClick={() => handleDeleteClick(p._id)} className="text-red-600">
                     Delete
                   </button>
                 </td>
@@ -105,6 +116,12 @@ export default function Products() {
             setShowForm(false);
             fetchProducts();
           }}
+        />
+      )}
+       {deleteTargetId && (
+        <DeleteConfirmModal
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setDeleteTargetId(null)}
         />
       )}
     </AdminLayout>

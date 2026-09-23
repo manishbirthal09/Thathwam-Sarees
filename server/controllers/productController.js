@@ -93,8 +93,23 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+// export const deleteProduct = async (req, res) => {
+//   try {
+//     await Product.findByIdAndDelete(req.params.id);
+//     res.json({ message: "Product deleted" });
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
+
 export const deleteProduct = async (req, res) => {
   try {
+    const { code } = req.body;
+
+    if (!code || code !== process.env.PRODUCT_DELETE_CODE) {
+      return res.status(403).json({ message: "Invalid or missing delete code" });
+    }
+
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: "Product deleted" });
   } catch (err) {

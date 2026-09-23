@@ -9,7 +9,7 @@ const SLIDES = [
     id: "slide-heritage",
     image:
       "/TBNEW2.png",
-       positionClass: "object-center lg:object-[center_10%]",
+       positionClass: "object-[center_10%] lg:object-[center_10%]",
     eyebrow: "Heritage Edit",
     headline: "Quiet Grandeur",
     copy:
@@ -19,7 +19,7 @@ const SLIDES = [
     id: "slide-bridal",
     image:
       "/TBNEW3.png",
-       positionClass: "object-center lg:object-[center_19%]",
+       positionClass: "object-[center_19%] lg:object-[center_19%]",
     eyebrow: "Bridal Edit",
     headline: "Made to Remember",
     copy:
@@ -29,7 +29,7 @@ const SLIDES = [
     id: "slide-bridal-2",
     image:
       "/TBNEW4.png",
-      positionClass: "object-center lg:object-[center_-1%]",
+      positionClass: "object-[center_-1%] lg:object-[center_-1%]",
     eyebrow: "Bridal Edit",
     headline: "Made to Remember",
     copy:
@@ -91,7 +91,7 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Featured collections"
-      className="relative aspect-[1/1] w-full  overflow-hidden bg-black  mt-8 lg:aspect-auto lg:h-[80vh] lg:mt-0 lg:py-0"
+    className="relative aspect-[3/2] w-full overflow-hidden bg-black mt-8  lg:aspect-[3/1.1] lg:mt-0 lg:py-0"
       
       
         onMouseEnter={() => setIsPaused(true)}

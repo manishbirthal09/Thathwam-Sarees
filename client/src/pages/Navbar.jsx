@@ -387,7 +387,7 @@ const SCROLL_THRESHOLD = ANNOUNCEMENT_BAR_HEIGHT;
 
 function CartIcon(props) {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <path
         d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5L6 8z"
         stroke="currentColor"
@@ -409,7 +409,7 @@ function CloseIcon(props) {
 
 function MenuIcon(props) {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
       <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
@@ -493,7 +493,7 @@ export default function Navbar() {
             aria-label="Open menu"
             className={`flex items-center justify-self-start p-1 transition-colors duration-300 ease-in-out lg:hidden ${iconToneClass}`}
           >
-            <MenuIcon />
+            <MenuIcon  />
           </button>
 
           {/* Desktop: logo + nav links together, left */}
@@ -504,7 +504,7 @@ export default function Navbar() {
 
             <ul className="flex items-center gap-7">
               <li>
-                <a href="/" className={`group relative text-[13px] font-medium uppercase tracking-label ${linkToneClass}`}>
+                <a href="/" className={`group relative text-[15px]  font-bold uppercase tracking-label ${linkToneClass}`}>
                   Home
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
                 </a>
@@ -517,10 +517,10 @@ export default function Navbar() {
               >
                 <button
                   type="button"
-                  className={`group relative flex items-center gap-1 text-[13px] font-medium uppercase tracking-label ${linkToneClass}`}
+                  className={`group relative flex items-center gap-1 text-[15px] font-bold uppercase tracking-label ${linkToneClass}`}
                 >
                   Collection
-                  <ChevronDown size={16} />
+                  <ChevronDown size={18} />
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
                 </button>
 
@@ -548,7 +548,7 @@ export default function Navbar() {
               </li>
 
               <li>
-                <a href="/contact" className={`group relative text-[13px] font-medium uppercase tracking-label ${linkToneClass}`}>
+                <a href="/contact" className={`group relative text-[15px] font-bold uppercase tracking-label ${linkToneClass}`}>
                   Contact
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-in-out group-hover:w-full" />
                 </a>
@@ -581,14 +581,14 @@ export default function Navbar() {
           </div>
 
           {/* Icons - right */}
-          <div className="col-start-3 flex items-center justify-self-end gap-2 sm:gap-3">
+          <div className="col-start-3 flex items-center justify-self-end gap-2 sm:gap-2">
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Open search"
               className={`p-1 transition-colors duration-300 ease-in-out lg:hidden ${iconToneClass}`}
             >
-              <Search size={22} />
+              <Search size={37} />
             </button>
 
             <a
@@ -608,7 +608,7 @@ export default function Navbar() {
               aria-label="Profile"
               className="text-white hover:text-white transition-colors duration-300 flex items-center"
             >
-              <User size={24} strokeWidth={1.5} />
+              <User size={40} strokeWidth={1.5} />
             </Link>
           </div>
         </nav>

@@ -91,7 +91,7 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Featured collections"
-    className="relative aspect-[3/2] w-full overflow-hidden bg-black mt-8  lg:aspect-[3/1.1] lg:mt-0 lg:py-0"
+    className="relative aspect-[3/2] w-full overflow-hidden bg-black mt-6.9  lg:aspect-[3/1.1] lg:mt-0 lg:py-0"
       
       
         onMouseEnter={() => setIsPaused(true)}
